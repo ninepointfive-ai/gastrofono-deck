@@ -1831,9 +1831,7 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   font-size: 14px; opacity: .3;
 }
 
-@media (max-width: 1024px) {
-  #mobile-gate { display: flex; }
-}
+/* Mobile Gate wird per JS nach Passwort-Auth angezeigt */
 
 
 @media print {
@@ -1940,16 +1938,31 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
 
 <script>
 (function(){
-  const gate  = document.getElementById('pw-gate');
-  const input = document.getElementById('pw-input');
-  const err   = document.getElementById('pw-error');
-  if (sessionStorage.getItem('npf_auth') === '1') { gate.style.display = 'none'; return; }
+  const gate   = document.getElementById('pw-gate');
+  const mgGate = document.getElementById('mobile-gate');
+  const input  = document.getElementById('pw-input');
+  const err    = document.getElementById('pw-error');
+  const isMobile = () => window.innerWidth <= 1024;
+
+  function showAfterAuth() {
+    gate.style.transition = 'opacity .4s';
+    gate.style.opacity = '0';
+    setTimeout(() => {
+      gate.style.display = 'none';
+      if (isMobile()) mgGate.style.display = 'flex';
+    }, 400);
+  }
+
+  if (sessionStorage.getItem('npf_auth') === '1') {
+    gate.style.display = 'none';
+    if (isMobile()) mgGate.style.display = 'flex';
+    return;
+  }
+
   function check() {
     if (input.value.trim().toUpperCase() === 'NPF') {
       sessionStorage.setItem('npf_auth', '1');
-      gate.style.transition = 'opacity .4s';
-      gate.style.opacity = '0';
-      setTimeout(() => gate.style.display = 'none', 400);
+      showAfterAuth();
     } else {
       err.style.opacity = '1';
       gate.classList.remove('shake');
@@ -2608,12 +2621,6 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
     </svg>
     PDF herunterladen
   </a>
-  <button class="mg-btn mg-btn-secondary" onclick="document.getElementById('mobile-gate').style.display='none'">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/>
-    </svg>
-    Trotzdem fortfahren
-  </button>
   <div id="mg-logo">
     <span style="font-weight:700">Gastro</span><span style="color:#6abf5e;font-weight:700">fon</span>
     <span>· ninepointfive AI</span>
