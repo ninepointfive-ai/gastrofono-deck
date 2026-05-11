@@ -515,9 +515,14 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.02em; }
 .problem {
   background: var(--paper);
   padding-top: 100px;
-  padding-bottom: 140px;
+  padding-bottom: 170px;
 }
-.problem .sources-footer { margin-top: auto; }
+.problem .sources-footer {
+  position: absolute;
+  bottom: 120px;
+  left: var(--slide-pad);
+  right: var(--slide-pad);
+}
 .problem-header { max-width: 1120px; margin-bottom: 80px; }
 .problem-header h1 {
   font-size: 88px;
@@ -815,7 +820,7 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.02em; }
 .metric-src a:hover { text-decoration: underline; }
 
 /* Quellen nach unten schieben auf benefit-slide */
-.benefit-slide .sources-footer { margin-top: auto; }
+.benefit-slide .sources-footer { margin-top: auto; align-self: stretch; }
 
 /* Quellen-Fußnote */
 .slide-sources {
