@@ -3,7 +3,10 @@
 <head>
 <meta charset="utf-8">
 <title>Gastrofon · Produktvorstellung — ninepointfive AI</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-fullscreen">
+<meta name="mobile-web-app-capable" content="yes">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&display=swap">
@@ -1843,33 +1846,36 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   .mob-nav { display: flex; }
 }
 
-/* ───────── Mobile: Fullscreen-Button ───────── */
-#mob-fs {
+/* ───────── Mobile: iOS-Hinweis ───────── */
+#ios-hint {
   display: none;
   position: fixed;
-  top: 10px;
-  right: 10px;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 99998;
-  background: rgba(0,0,0,.5);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(10,10,10,.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 14px;
+  padding: 12px 18px;
   color: #fff;
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
+  font-size: 13px;
+  white-space: nowrap;
+  gap: 10px;
   align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-  padding: 0;
-  transition: background .15s;
+  animation: hintFade 4s ease forwards;
 }
-#mob-fs:active { background: rgba(0,0,0,.75); }
-#mob-fs svg { width: 18px; height: 18px; pointer-events: none; }
-
+#ios-hint svg { width: 18px; height: 18px; flex-shrink: 0; color: #6abf5e; }
+@keyframes hintFade {
+  0%   { opacity: 0; transform: translateX(-50%) translateY(8px); }
+  15%  { opacity: 1; transform: translateX(-50%) translateY(0); }
+  75%  { opacity: 1; }
+  100% { opacity: 0; }
+}
 @media (orientation: landscape) and (max-height: 600px) {
-  #mob-fs { display: flex; }
+  #ios-hint.visible { display: flex; }
 }
 
 @media print {
@@ -2645,17 +2651,14 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
 <button class="mob-nav" id="mob-prev" aria-label="Vorherige Folie">&#8249;</button>
 <button class="mob-nav" id="mob-next" aria-label="Nächste Folie">&#8250;</button>
 
-<!-- Mobile fullscreen button -->
-<button id="mob-fs" aria-label="Vollbild">
-  <svg id="fs-icon-enter" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M3 8V5a2 2 0 0 1 2-2h3"/><path d="M16 3h3a2 2 0 0 1 2 2v3"/>
-    <path d="M21 16v3a2 2 0 0 1-2 2h-3"/><path d="M8 21H5a2 2 0 0 1-2-2v-3"/>
+<!-- iOS Home Screen hint -->
+<div id="ios-hint">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 2v13"/><path d="m8 6 4-4 4 4"/>
+    <path d="M20 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-5"/>
   </svg>
-  <svg id="fs-icon-exit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
-    <path d="M8 3v3a2 2 0 0 1-2 2H3"/><path d="M21 8h-3a2 2 0 0 1-2-2V3"/>
-    <path d="M3 16h3a2 2 0 0 1 2 2v3"/><path d="M16 21v-3a2 2 0 0 1 2-2h3"/>
-  </svg>
-</button>
+  <span>Für Vollbild: <strong>Teilen → Zum Home-Bildschirm</strong></span>
+</div>
 
 <!-- Hotkey Help Overlay -->
 <div class="help-overlay" id="helpOverlay">
@@ -2859,42 +2862,27 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   document.getElementById('mob-prev').addEventListener('click', prev);
   document.getElementById('mob-next').addEventListener('click', next);
 
-  // ───── Mobile fullscreen ─────
-  const fsBtn       = document.getElementById('mob-fs');
-  const fsIconEnter = document.getElementById('fs-icon-enter');
-  const fsIconExit  = document.getElementById('fs-icon-exit');
-
-  function isFS() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
-
-  function enterFS() {
-    const el = document.documentElement;
-    (el.requestFullscreen || el.webkitRequestFullscreen || function(){}).call(el);
-  }
-  function exitFS() {
-    (document.exitFullscreen || document.webkitExitFullscreen || function(){}).call(document);
-  }
-  function toggleFS() { isFS() ? exitFS() : enterFS(); }
-
-  function updateFSIcon() {
-    const inFS = isFS();
-    fsIconEnter.style.display = inFS ? 'none' : '';
-    fsIconExit.style.display  = inFS ? '' : 'none';
-    fitStage();
-  }
-
-  fsBtn.addEventListener('click', toggleFS);
-  document.addEventListener('fullscreenchange',       updateFSIcon);
-  document.addEventListener('webkitfullscreenchange', updateFSIcon);
-
-  // Auto-fullscreen beim Drehen ins Querformat auf Touch-Geräten
+  // ───── iOS Home-Screen Hinweis ─────
   const isTouchDevice = () => 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  const isStandalone  = () => window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
+  const iosHint       = document.getElementById('ios-hint');
+
+  function showIOSHint() {
+    if (!isTouchDevice() || isStandalone()) return;
+    if (sessionStorage.getItem('ios_hint_shown')) return;
+    sessionStorage.setItem('ios_hint_shown', '1');
+    iosHint.classList.add('visible');
+    setTimeout(() => iosHint.classList.remove('visible'), 4500);
+  }
+
   function onOrientationChange() {
     if (!isTouchDevice()) return;
     setTimeout(() => {
-      const landscape = window.innerWidth > window.innerHeight;
-      if (landscape && !isFS()) enterFS();
+      fitStage();
+      if (window.innerWidth > window.innerHeight) showIOSHint();
     }, 350);
   }
+
   if (screen.orientation) {
     screen.orientation.addEventListener('change', onOrientationChange);
   } else {
