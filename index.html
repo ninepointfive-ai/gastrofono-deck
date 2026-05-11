@@ -1938,24 +1938,31 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
 
 <script>
 (function(){
-  const gate   = document.getElementById('pw-gate');
-  const mgGate = document.getElementById('mobile-gate');
-  const input  = document.getElementById('pw-input');
-  const err    = document.getElementById('pw-error');
+  const gate  = document.getElementById('pw-gate');
+  const input = document.getElementById('pw-input');
+  const err   = document.getElementById('pw-error');
   const isMobile = () => window.innerWidth <= 1024;
+  const getMobileGate = () => document.getElementById('mobile-gate');
 
   function showAfterAuth() {
     gate.style.transition = 'opacity .4s';
     gate.style.opacity = '0';
     setTimeout(() => {
       gate.style.display = 'none';
-      if (isMobile()) mgGate.style.display = 'flex';
+      if (isMobile()) getMobileGate().style.display = 'flex';
     }, 400);
   }
 
   if (sessionStorage.getItem('npf_auth') === '1') {
     gate.style.display = 'none';
-    if (isMobile()) mgGate.style.display = 'flex';
+    // mobile-gate existiert noch nicht — warten bis DOM geladen
+    if (isMobile()) {
+      document.addEventListener('DOMContentLoaded', () => {
+        getMobileGate().style.display = 'flex';
+      });
+      // Falls DOMContentLoaded schon gefeuert hat
+      if (document.readyState !== 'loading') getMobileGate().style.display = 'flex';
+    }
     return;
   }
 
