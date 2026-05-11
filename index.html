@@ -1843,6 +1843,35 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   .mob-nav { display: flex; }
 }
 
+/* ───────── Mobile: Fullscreen-Button ───────── */
+#mob-fs {
+  display: none;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 99998;
+  background: rgba(0,0,0,.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,.18);
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  padding: 0;
+  transition: background .15s;
+}
+#mob-fs:active { background: rgba(0,0,0,.75); }
+#mob-fs svg { width: 18px; height: 18px; pointer-events: none; }
+
+@media (orientation: landscape) and (max-height: 600px) {
+  #mob-fs { display: flex; }
+}
+
 @media print {
   body { background: #fff; }
   .stage { transform: none; width: 100%; height: auto; }
@@ -2616,6 +2645,18 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
 <button class="mob-nav" id="mob-prev" aria-label="Vorherige Folie">&#8249;</button>
 <button class="mob-nav" id="mob-next" aria-label="Nächste Folie">&#8250;</button>
 
+<!-- Mobile fullscreen button -->
+<button id="mob-fs" aria-label="Vollbild">
+  <svg id="fs-icon-enter" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 8V5a2 2 0 0 1 2-2h3"/><path d="M16 3h3a2 2 0 0 1 2 2v3"/>
+    <path d="M21 16v3a2 2 0 0 1-2 2h-3"/><path d="M8 21H5a2 2 0 0 1-2-2v-3"/>
+  </svg>
+  <svg id="fs-icon-exit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+    <path d="M8 3v3a2 2 0 0 1-2 2H3"/><path d="M21 8h-3a2 2 0 0 1-2-2V3"/>
+    <path d="M3 16h3a2 2 0 0 1 2 2v3"/><path d="M16 21v-3a2 2 0 0 1 2-2h3"/>
+  </svg>
+</button>
+
 <!-- Hotkey Help Overlay -->
 <div class="help-overlay" id="helpOverlay">
   <div class="help-card">
@@ -2817,6 +2858,48 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   // ───── Mobile nav buttons ─────
   document.getElementById('mob-prev').addEventListener('click', prev);
   document.getElementById('mob-next').addEventListener('click', next);
+
+  // ───── Mobile fullscreen ─────
+  const fsBtn       = document.getElementById('mob-fs');
+  const fsIconEnter = document.getElementById('fs-icon-enter');
+  const fsIconExit  = document.getElementById('fs-icon-exit');
+
+  function isFS() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+
+  function enterFS() {
+    const el = document.documentElement;
+    (el.requestFullscreen || el.webkitRequestFullscreen || function(){}).call(el);
+  }
+  function exitFS() {
+    (document.exitFullscreen || document.webkitExitFullscreen || function(){}).call(document);
+  }
+  function toggleFS() { isFS() ? exitFS() : enterFS(); }
+
+  function updateFSIcon() {
+    const inFS = isFS();
+    fsIconEnter.style.display = inFS ? 'none' : '';
+    fsIconExit.style.display  = inFS ? '' : 'none';
+    fitStage();
+  }
+
+  fsBtn.addEventListener('click', toggleFS);
+  document.addEventListener('fullscreenchange',       updateFSIcon);
+  document.addEventListener('webkitfullscreenchange', updateFSIcon);
+
+  // Auto-fullscreen beim Drehen ins Querformat auf Touch-Geräten
+  const isTouchDevice = () => 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  function onOrientationChange() {
+    if (!isTouchDevice()) return;
+    setTimeout(() => {
+      const landscape = window.innerWidth > window.innerHeight;
+      if (landscape && !isFS()) enterFS();
+    }, 350);
+  }
+  if (screen.orientation) {
+    screen.orientation.addEventListener('change', onOrientationChange);
+  } else {
+    window.addEventListener('orientationchange', onOrientationChange);
+  }
 
   // ───── Touch swipe ─────
   let touchStartX = 0, touchStartY = 0;
