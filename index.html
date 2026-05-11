@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Gastrofon · Produktvorstellung — ninepointfive AI</title>
-<meta name="viewport" content="width=1920, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&display=swap">
@@ -1794,20 +1794,15 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
 #rotate-overlay svg {
   width: 64px; height: 64px;
   color: #6abf5e;
-  animation: rotateHint 2s ease-in-out infinite;
+  animation: rotateHint 2.5s ease-in-out infinite;
 }
 @keyframes rotateHint {
-  0%,100% { transform: rotate(0deg); }
-  40%      { transform: rotate(90deg); }
-  60%      { transform: rotate(90deg); }
+  0%,30%,100% { transform: rotate(0deg); }
+  60%,85%     { transform: rotate(90deg); }
 }
 #rotate-overlay p { margin: 0; }
 #rotate-overlay .rot-title { font-size: 22px; font-weight: 600; }
-#rotate-overlay .rot-sub   { font-size: 14px; opacity: .55; }
-
-@media (orientation: portrait) and (max-width: 1200px) {
-  #rotate-overlay { display: flex; }
-}
+#rotate-overlay .rot-sub   { font-size: 14px; opacity: .5; margin-top: 4px; }
 
 /* ───────── Mobile: Nav-Buttons ───────── */
 .mob-nav {
@@ -1815,15 +1810,15 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   position: fixed;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 10000;
-  background: rgba(0,0,0,.45);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border: 1px solid rgba(255,255,255,.15);
+  z-index: 99998;
+  background: rgba(0,0,0,.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,.18);
   color: #fff;
-  width: 44px;
-  height: 72px;
-  font-size: 22px;
+  width: 40px;
+  height: 68px;
+  font-size: 26px;
   line-height: 1;
   cursor: pointer;
   border-radius: 10px;
@@ -1831,12 +1826,20 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   justify-content: center;
   transition: background .15s;
   -webkit-tap-highlight-color: transparent;
+  padding: 0;
 }
-.mob-nav:active { background: rgba(0,0,0,.7); }
-#mob-prev { left: 10px; }
-#mob-next { right: 10px; }
+.mob-nav:active { background: rgba(0,0,0,.75); }
+#mob-prev { left: 8px; }
+#mob-next { right: 8px; }
 
-@media (max-width: 1200px) and (orientation: landscape) {
+/* Portrait: Overlay anzeigen, Buttons ausblenden */
+@media (orientation: portrait) {
+  #rotate-overlay { display: flex; }
+  .mob-nav        { display: none !important; }
+}
+
+/* Landscape auf kleinen Screens: Buttons anzeigen */
+@media (orientation: landscape) and (max-height: 600px) {
   .mob-nav { display: flex; }
 }
 
