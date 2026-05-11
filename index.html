@@ -2736,33 +2736,46 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   }
 
   function activate(i) {
-    if (i < 0 || i >= slides.length) return;
-    slides.forEach(s => { s.classList.remove('is-active'); s.classList.remove('sms-visible'); });
-    idx = i;
-    const cur = slides[idx];
-    cur.classList.add('is-active');
-    runCounters(cur);
-    updateProgress();
-    // hide audio players on slide change to avoid concurrent playback
-    document.querySelectorAll('.demo-audio').forEach(a => a.classList.remove('is-visible'));
-    document.querySelectorAll('audio').forEach(a => { try { a.pause(); } catch(e){} try { a.currentTime = 0; } catch(e){} });
+    try {
+      if (!slides.length || i < 0 || i >= slides.length) return;
+      slides.forEach(s => { s.classList.remove('is-active'); s.classList.remove('sms-visible'); });
+      idx = i;
+      const cur = slides[idx];
+      if (!cur) return;
+      cur.classList.add('is-active');
+      runCounters(cur);
+      updateProgress();
+      document.querySelectorAll('.demo-audio').forEach(a => a.classList.remove('is-visible'));
+      document.querySelectorAll('audio').forEach(a => { try { a.pause(); } catch(e){} try { a.currentTime = 0; } catch(e){} });
+    } catch(e) {}
   }
-  function next(){
+
+  let navCooldown = false;
+  function navigate(fn) {
+    if (navCooldown || !slides.length) return;
+    navCooldown = true;
+    try { fn(); } catch(e) {}
+    setTimeout(() => { navCooldown = false; }, 300);
+  }
+
+  function next(){ navigate(() => {
     const cur = slides[idx];
+    if (!cur) return;
     if (cur.querySelector('.sms-col') && !cur.classList.contains('sms-visible')) {
       cur.classList.add('sms-visible');
-      return;
+    } else {
+      activate(Math.min(idx + 1, slides.length - 1));
     }
-    activate(Math.min(idx + 1, slides.length - 1));
-  }
-  function prev(){
+  }); }
+  function prev(){ navigate(() => {
     const cur = slides[idx];
+    if (!cur) return;
     if (cur.classList.contains('sms-visible')) {
       cur.classList.remove('sms-visible');
-      return;
+    } else {
+      activate(Math.max(idx - 1, 0));
     }
-    activate(Math.max(idx - 1, 0));
-  }
+  }); }
 
   // ───── KPI counters ─────
   function runCounters(slide) {
