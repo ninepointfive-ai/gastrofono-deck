@@ -2698,7 +2698,7 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
     };
 
     btn.addEventListener('click', () => {
-      if (audio.paused) audio.play();
+      if (audio.paused) audio.play().catch(() => {});
       else audio.pause();
     });
     audio.addEventListener('play',  () => player.classList.add('is-playing'));
@@ -2730,6 +2730,7 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
 
   const progressBar = document.getElementById('progress-bar');
   function updateProgress() {
+    if (!progressBar) return;
     const pct = slides.length <= 1 ? 100 : (idx / (slides.length - 1)) * 100;
     progressBar.style.width = pct + '%';
   }
@@ -2744,7 +2745,7 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
     updateProgress();
     // hide audio players on slide change to avoid concurrent playback
     document.querySelectorAll('.demo-audio').forEach(a => a.classList.remove('is-visible'));
-    document.querySelectorAll('audio').forEach(a => { try { a.pause(); a.currentTime = 0; } catch(e){} });
+    document.querySelectorAll('audio').forEach(a => { try { a.pause(); } catch(e){} try { a.currentTime = 0; } catch(e){} });
   }
   function next(){
     const cur = slides[idx];
@@ -2821,8 +2822,15 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
 
   // ───── Orientation change: Stage neu berechnen ─────
   const onOrientationChange = () => setTimeout(fitStage, 350);
-  if (screen.orientation) screen.orientation.addEventListener('change', onOrientationChange);
-  else window.addEventListener('orientationchange', onOrientationChange);
+  try {
+    if (screen.orientation && screen.orientation.addEventListener) {
+      screen.orientation.addEventListener('change', onOrientationChange);
+    } else {
+      window.addEventListener('orientationchange', onOrientationChange);
+    }
+  } catch(e) {
+    window.addEventListener('orientationchange', onOrientationChange);
+  }
 
   // ───── Touch swipe (nur Single-Touch, Pinch-Zoom bleibt unberührt) ─────
   let touchStartX = 0, touchStartY = 0, touchIsMulti = false;
