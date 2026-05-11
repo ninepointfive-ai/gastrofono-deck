@@ -2806,6 +2806,12 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
     });
   }
 
+  // ───── Scroll navigation ─────
+  document.addEventListener('wheel', e => {
+    e.preventDefault();
+    if (e.deltaY > 0) next(); else prev();
+  }, { passive: false });
+
   // ───── Hotkeys ─────
   const help = document.getElementById('helpOverlay');
   function toggleHelp(force) {
