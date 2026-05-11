@@ -1811,14 +1811,14 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   top: 50%;
   transform: translateY(-50%);
   z-index: 99998;
-  background: rgba(0,0,0,.5);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,.15);
   color: #fff;
-  width: 40px;
-  height: 68px;
-  font-size: 26px;
+  width: 44px;
+  height: 72px;
+  font-size: 22px;
   line-height: 1;
   cursor: pointer;
   border-radius: 10px;
@@ -1826,11 +1826,10 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   justify-content: center;
   transition: background .15s;
   -webkit-tap-highlight-color: transparent;
-  padding: 0;
 }
-.mob-nav:active { background: rgba(0,0,0,.75); }
-#mob-prev { left: 8px; }
-#mob-next { right: 8px; }
+.mob-nav:active { background: rgba(0,0,0,.7); }
+#mob-prev { left: 10px; }
+#mob-next { right: 10px; }
 
 /* Portrait: Overlay anzeigen, Buttons ausblenden */
 @media (orientation: portrait) {
