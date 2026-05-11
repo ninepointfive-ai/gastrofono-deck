@@ -3,10 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Gastrofon · Produktvorstellung — ninepointfive AI</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-fullscreen">
-<meta name="mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&display=swap">
@@ -1846,37 +1843,6 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   .mob-nav { display: flex; }
 }
 
-/* ───────── Mobile: iOS-Hinweis ───────── */
-#ios-hint {
-  display: none;
-  position: fixed;
-  bottom: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 99998;
-  background: rgba(10,10,10,.88);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,.15);
-  border-radius: 14px;
-  padding: 12px 18px;
-  color: #fff;
-  font-size: 13px;
-  white-space: nowrap;
-  gap: 10px;
-  align-items: center;
-  animation: hintFade 4s ease forwards;
-}
-#ios-hint svg { width: 18px; height: 18px; flex-shrink: 0; color: #6abf5e; }
-@keyframes hintFade {
-  0%   { opacity: 0; transform: translateX(-50%) translateY(8px); }
-  15%  { opacity: 1; transform: translateX(-50%) translateY(0); }
-  75%  { opacity: 1; }
-  100% { opacity: 0; }
-}
-@media (orientation: landscape) and (max-height: 600px) {
-  #ios-hint.visible { display: flex; }
-}
 
 @media print {
   body { background: #fff; }
@@ -2651,14 +2617,6 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
 <button class="mob-nav" id="mob-prev" aria-label="Vorherige Folie">&#8249;</button>
 <button class="mob-nav" id="mob-next" aria-label="Nächste Folie">&#8250;</button>
 
-<!-- iOS Home Screen hint -->
-<div id="ios-hint">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M12 2v13"/><path d="m8 6 4-4 4 4"/>
-    <path d="M20 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-5"/>
-  </svg>
-  <span>Für Vollbild: <strong>Teilen → Zum Home-Bildschirm</strong></span>
-</div>
 
 <!-- Hotkey Help Overlay -->
 <div class="help-overlay" id="helpOverlay">
@@ -2862,40 +2820,21 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   document.getElementById('mob-prev').addEventListener('click', prev);
   document.getElementById('mob-next').addEventListener('click', next);
 
-  // ───── iOS Home-Screen Hinweis ─────
-  const isTouchDevice = () => 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-  const isStandalone  = () => window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
-  const iosHint       = document.getElementById('ios-hint');
+  // ───── Orientation change: Stage neu berechnen ─────
+  const onOrientationChange = () => setTimeout(fitStage, 350);
+  if (screen.orientation) screen.orientation.addEventListener('change', onOrientationChange);
+  else window.addEventListener('orientationchange', onOrientationChange);
 
-  function showIOSHint() {
-    if (!isTouchDevice() || isStandalone()) return;
-    if (sessionStorage.getItem('ios_hint_shown')) return;
-    sessionStorage.setItem('ios_hint_shown', '1');
-    iosHint.classList.add('visible');
-    setTimeout(() => iosHint.classList.remove('visible'), 4500);
-  }
-
-  function onOrientationChange() {
-    if (!isTouchDevice()) return;
-    setTimeout(() => {
-      fitStage();
-      if (window.innerWidth > window.innerHeight) showIOSHint();
-    }, 350);
-  }
-
-  if (screen.orientation) {
-    screen.orientation.addEventListener('change', onOrientationChange);
-  } else {
-    window.addEventListener('orientationchange', onOrientationChange);
-  }
-
-  // ───── Touch swipe ─────
-  let touchStartX = 0, touchStartY = 0;
+  // ───── Touch swipe (nur Single-Touch, Pinch-Zoom bleibt unberührt) ─────
+  let touchStartX = 0, touchStartY = 0, touchIsMulti = false;
   document.addEventListener('touchstart', e => {
+    touchIsMulti = e.touches.length > 1;
+    if (touchIsMulti) return;
     touchStartX = e.touches[0].clientX;
     touchStartY = e.touches[0].clientY;
   }, { passive: true });
   document.addEventListener('touchend', e => {
+    if (touchIsMulti) return;
     const dx = e.changedTouches[0].clientX - touchStartX;
     const dy = e.changedTouches[0].clientY - touchStartY;
     if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
