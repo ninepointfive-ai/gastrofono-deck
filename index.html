@@ -2910,7 +2910,10 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
       const audio = cur.querySelector('.demo-audio');
       if (audio) audio.classList.toggle('is-visible');
     }
-    else if (e.key.toLowerCase() === 'f') { fsToggle(); }
+    else if (e.key.toLowerCase() === 'f') {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+      else document.exitFullscreen();
+    }
     else if (e.key === '?' || e.key.toLowerCase() === 'h') { toggleHelp(); }
     else if (e.key === 'Escape') { toggleHelp(false); }
   });
@@ -2922,23 +2925,25 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   if (navPrev) navPrev.addEventListener('click', prev);
   if (navNext) navNext.addEventListener('click', next);
 
-  // ───── Vollbild (cross-browser) ─────
-  const fsActive = () => !!(document.fullscreenElement || document.webkitFullscreenElement);
-  const fsEnter  = () => {
-    const el = document.documentElement;
-    return (el.requestFullscreen || el.webkitRequestFullscreen)?.call(el)?.catch(() => {});
-  };
-  const fsExit   = () =>
-    (document.exitFullscreen || document.webkitExitFullscreen)?.call(document)?.catch(() => {});
-  const fsToggle = () => fsActive() ? fsExit() : fsEnter();
-
+  // ───── Vollbild-Button ─────
   setTimeout(() => {
     const btnFs = document.getElementById('btn-fullscreen');
     if (!btnFs) return;
-    const updateIcon = () => btnFs.classList.toggle('is-fullscreen', fsActive());
-    btnFs.addEventListener('click', fsToggle);
-    document.addEventListener('fullscreenchange',       updateIcon);
-    document.addEventListener('webkitfullscreenchange', updateIcon);
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    function updateFsIcon() {
+      btnFs.classList.toggle('is-fullscreen', !!document.fullscreenElement);
+    }
+
+    btnFs.addEventListener('click', toggleFullscreen);
+    document.addEventListener('fullscreenchange', updateFsIcon);
   }, 0);
 
   // ───── Init ─────
