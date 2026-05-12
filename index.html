@@ -1886,6 +1886,32 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   #nav-prev, #nav-next { display: flex; }
 }
 
+#btn-fullscreen {
+  display: none;
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 9999;
+  width: 40px; height: 40px;
+  background: rgba(17,27,10,.07);
+  border: 1px solid rgba(17,27,10,.13);
+  border-radius: 8px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  transition: background .15s;
+  -webkit-tap-highlight-color: transparent;
+  padding: 0;
+}
+#btn-fullscreen:hover { background: rgba(17,27,10,.14); }
+#btn-fullscreen svg { width: 18px; height: 18px; stroke: rgba(17,27,10,.5); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+#btn-fullscreen .icon-compress { display: none; }
+#btn-fullscreen.is-fullscreen .icon-expand  { display: none; }
+#btn-fullscreen.is-fullscreen .icon-compress { display: block; }
+@media (min-width: 768px) {
+  #btn-fullscreen { display: flex; }
+}
+
 @media print {
   body { background: #fff; }
   .stage { transform: none; width: 100%; height: auto; }
@@ -2901,6 +2927,18 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   if (navPrev) navPrev.addEventListener('click', prev);
   if (navNext) navNext.addEventListener('click', next);
 
+  // ───── Vollbild-Button ─────
+  const btnFs = document.getElementById('btn-fullscreen');
+  if (btnFs) {
+    btnFs.addEventListener('click', () => {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+      else document.exitFullscreen?.();
+    });
+    document.addEventListener('fullscreenchange', () => {
+      btnFs.classList.toggle('is-fullscreen', !!document.fullscreenElement);
+    });
+  }
+
   // ───── Init ─────
   // Re-evaluate slides after variant filtering applies
   setTimeout(() => {
@@ -2917,6 +2955,11 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
 </button>
 <button id="nav-next" aria-label="Nächste Slide">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+</button>
+
+<button id="btn-fullscreen" aria-label="Vollbild umschalten">
+  <svg class="icon-expand" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+  <svg class="icon-compress" viewBox="0 0 24 24"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></svg>
 </button>
 
 </body>
