@@ -2938,9 +2938,9 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
 
     function toggleFullscreen() {
       if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen();
+        (document.body.requestFullscreen || document.body.webkitRequestFullscreen).call(document.body);
       } else {
-        document.exitFullscreen();
+        (document.exitFullscreen || document.webkitExitFullscreen).call(document);
       }
     }
 
