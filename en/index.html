@@ -1686,33 +1686,6 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   100% { box-shadow: 0 0 0 0px  rgba(123, 163, 14, 0);    }
 }
 
-/* ── Blinking dot on Listen label ── */
-.uc-cta-audio .uc-cta-label {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.uc-cta-audio .uc-cta-label::before {
-  content: '';
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--brand);
-  flex-shrink: 0;
-  animation: blink-dot 1.4s ease-in-out infinite;
-}
-
-.uc-cta-audio:has(.audio-player.is-playing) .uc-cta-label::before {
-  animation: none;
-  opacity: 0.35;
-}
-
-@keyframes blink-dot {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.2; }
-}
 
 .qr-floater {
   position: absolute;
