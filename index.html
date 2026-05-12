@@ -1882,9 +1882,6 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
 #nav-next { right: 14px; }
 #nav-prev:hover, #nav-next:hover { background: rgba(17,27,10,.14); }
 #nav-prev svg, #nav-next svg { width: 22px; height: 22px; stroke: rgba(17,27,10,.55); }
-@media (min-width: 768px) and (max-width: 1023px) {
-  #nav-prev, #nav-next { display: flex; }
-}
 
 #btn-fullscreen {
   display: none;
@@ -1908,7 +1905,7 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
 #btn-fullscreen .icon-compress { display: none; }
 #btn-fullscreen.is-fullscreen .icon-expand  { display: none; }
 #btn-fullscreen.is-fullscreen .icon-compress { display: block; }
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   #btn-fullscreen { display: flex; }
 }
 
@@ -2024,18 +2021,18 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   const gate  = document.getElementById('pw-gate');
   const input = document.getElementById('pw-input');
   const err   = document.getElementById('pw-error');
-  const isPhone = () => window.innerWidth < 768;
+  const isSmallScreen = () => window.innerWidth < 1024;
   const getMobileGate = () => document.getElementById('mobile-gate');
 
-  // Phones: Login überspringen, sofort Hinweis zeigen
-  if (isPhone()) {
+  // Phones + Tablets: Login überspringen, sofort Hinweis zeigen
+  if (isSmallScreen()) {
     gate.style.display = 'none';
     const showMG = () => { const mg = getMobileGate(); if (mg) mg.style.display = 'flex'; };
     document.readyState !== 'loading' ? showMG() : document.addEventListener('DOMContentLoaded', showMG);
     return;
   }
 
-  // Tablets + Desktop: normaler Auth-Flow
+  // Desktop: normaler Auth-Flow
   function showAfterAuth() {
     gate.style.transition = 'opacity .4s';
     gate.style.opacity = '0';
