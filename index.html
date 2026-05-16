@@ -2813,7 +2813,7 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
 
   // ───── Click navigation (linke Hälfte = zurück, rechte Hälfte = vor) ─────
   document.querySelector('.stage').addEventListener('click', e => {
-    if (e.target.closest('button, a, input, audio, select, textarea, [role="button"]')) return;
+    if (e.target.closest('button, a, input, audio, select, textarea, [role="button"], .audio-player, .demo-audio')) return;
     if (e.clientX < window.innerWidth / 2) prev(); else next();
   });
 
