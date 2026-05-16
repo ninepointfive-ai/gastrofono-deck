@@ -369,7 +369,7 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.02em; }
 }
 .cover-bg {
   position: absolute;
-  inset: 0;
+  inset: -2%;
   z-index: 0;
   background-image: url('assets/cover-bg.jpg');
   background-size: cover;
@@ -378,6 +378,8 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.02em; }
      leichter Rotation und mehrstufigem Pfad — wirkt wie eine Kamerafahrt. */
   animation: ken-burns-cinema 28s cubic-bezier(.45,.05,.55,.95) infinite;
   will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 /* Subtiler warmer Glanz, der diagonal driftet — wie Kerzenlicht, das durchs Bild wandert */
 .cover-glint {
@@ -395,7 +397,7 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.02em; }
 }
 .cover-overlay {
   position: absolute;
-  inset: 0;
+  inset: -1px;
   z-index: 2;
   background:
     /* Lese-Lane links für Header/Content-Lesbarkeit, rechts deutlich heller */
