@@ -261,22 +261,18 @@
           <div class="info-row"><span class="info-label">Adresse</span><span class="info-value">Ulmer Str. 5, 88400 Biberach</span></div>
         </div>`;
 
-    // Payment section for delivery only
     const orderId = o.order_id || '—';
     const paymentSection = isDelivery
       ? `<div class="payment-box">
-          <div class="payment-title">💳 Zahlung per Überweisung</div>
+          <div class="payment-title">💳 Zahlung an der Tür</div>
           <div class="payment-detail">
-            <strong>Empfänger:</strong> Hausbrauerei Biberach<br>
-            <strong>IBAN:</strong> DE00 0000 0000 0000 0000 00<br>
-            <strong>Betrag:</strong> ${fmt(o.total)}<br>
-            <strong>Verwendungszweck:</strong><br>
-            <span class="payment-ref">Bestellung ${esc(orderId)}</span>
+            Bitte halte <strong>${fmt(o.total)}</strong> bereit.<br>
+            Zahlung per <strong>Karte oder bar</strong> bei der Lieferung an der Tür.
           </div>
         </div>`
       : `<div class="payment-box" style="background:#fff8e1;border-color:#ffc107;">
-          <div class="payment-title" style="color:#856404;">💵 Zahlung bei Abholung</div>
-          <div class="payment-detail">Bitte halte <strong>${fmt(o.total)}</strong> bar oder per EC-Karte bereit.</div>
+          <div class="payment-title" style="color:#856404;">💵 Zahlung vor Ort</div>
+          <div class="payment-detail">Bitte halte <strong>${fmt(o.total)}</strong> bereit.<br>Zahlung per <strong>Karte oder bar</strong> bei der Abholung vor Ort.</div>
         </div>`;
 
     document.getElementById('app').innerHTML = `
