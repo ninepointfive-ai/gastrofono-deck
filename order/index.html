@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bestellübersicht – Hausbrauerei Biberach</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #5a8a1f;
+      --green-light: #7ab52a;
+      --bg: #f5f5f0;
+      --card: #ffffff;
+      --text: #1a1a1a;
+      --muted: #666;
+      --border: #e0e0d8;
+      --radius: 12px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 24px 16px 48px;
+    }
+
+    .container { max-width: 520px; margin: 0 auto; }
+
+    /* Header */
+    .header {
+      text-align: center;
+      padding: 32px 0 24px;
+    }
+    .logo-wrap { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 20px; }
+    .logo-hop {
+      width: 48px; height: 48px;
+      background: var(--green);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 24px;
+    }
+    .logo-name { font-size: 15px; font-weight: 700; color: var(--green); letter-spacing: 0.02em; }
+    .logo-sub  { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    .status-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #e8f5d4; color: var(--green);
+      border: 1.5px solid #b6da79;
+      border-radius: 999px; padding: 8px 20px;
+      font-size: 15px; font-weight: 600;
+    }
+    .status-badge .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--green-light);
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    /* Cards */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 12px;
+    }
+    .card-title {
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--muted); margin-bottom: 14px;
+    }
+
+    /* Order info */
+    .info-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      font-size: 14px; padding: 5px 0;
+    }
+    .info-label { color: var(--muted); }
+    .info-value { font-weight: 500; text-align: right; max-width: 60%; }
+
+    .type-badge {
+      display: inline-block;
+      padding: 3px 10px; border-radius: 999px;
+      font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .type-pickup  { background: #fff3cd; color: #856404; }
+    .type-delivery { background: #d4edff; color: #0a558c; }
+
+    /* Items */
+    .item-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .item-row:last-child { border-bottom: none; }
+    .item-qty {
+      min-width: 28px; height: 28px;
+      background: var(--bg); border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; color: var(--green);
+      margin-right: 12px; flex-shrink: 0;
+    }
+    .item-name { flex: 1; }
+    .item-price { font-weight: 600; white-space: nowrap; margin-left: 12px; }
+
+    /* Totals */
+    .total-row {
+      display: flex; justify-content: space-between;
+      font-size: 14px; padding: 6px 0; color: var(--muted);
+    }
+    .total-row.grand {
+      font-size: 18px; font-weight: 700; color: var(--text);
+      border-top: 2px solid var(--border); margin-top: 8px; padding-top: 14px;
+    }
+
+    /* Payment */
+    .payment-box {
+      background: #f0f7e6; border: 1.5px solid #b6da79;
+      border-radius: var(--radius); padding: 16px 20px;
+    }
+    .payment-title { font-weight: 700; font-size: 14px; margin-bottom: 10px; color: var(--green); }
+    .payment-detail { font-size: 13px; color: var(--text); line-height: 1.6; }
+    .payment-detail strong { font-weight: 700; }
+    .payment-ref {
+      display: inline-block; background: var(--card);
+      border: 1px solid var(--border); border-radius: 6px;
+      padding: 4px 10px; font-family: monospace; font-size: 13px;
+      margin-top: 4px; letter-spacing: 0.04em;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center; margin-top: 32px;
+      font-size: 12px; color: var(--muted); line-height: 1.6;
+    }
+    .footer a { color: var(--green); text-decoration: none; }
+
+    /* Error / Loading */
+    .state-center {
+      text-align: center; padding: 80px 0;
+      color: var(--muted); font-size: 15px;
+    }
+    .state-center .icon { font-size: 40px; margin-bottom: 16px; }
+    .state-center p { line-height: 1.5; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="logo-wrap">
+      <div class="logo-hop">🍺</div>
+      <div>
+        <div class="logo-name">Hausbrauerei Biberach</div>
+        <div class="logo-sub">Bestellübersicht</div>
+      </div>
+    </div>
+    <div class="status-badge">
+      <span class="dot"></span>
+      Bestellung eingegangen
+    </div>
+  </div>
+
+  <div id="app">
+    <div class="state-center">
+      <div class="icon">⏳</div>
+      <p>Bestellung wird geladen…</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    Fragen? Ruf uns an: <a href="tel:+4973519512961">+49 7351 9512961</a><br>
+    Hausbrauerei Biberach · Ulmer Str. 5 · 88400 Biberach
+  </div>
+
+</div>
+<script>
+(function () {
+  'use strict';
+
+  function fmt(num) {
+    return Number(num).toFixed(2).replace('.', ',') + ' €';
+  }
+
+  function esc(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function parseOrder() {
+    const params = new URLSearchParams(window.location.search);
+    // Support ?order=BASE64 or individual params for direct testing
+    if (params.has('order')) {
+      try {
+        const raw = atob(params.get('order'));
+        return JSON.parse(raw);
+      } catch (e) {
+        return null;
+      }
+    }
+    // Fallback: individual params
+    const type = params.get('type');
+    if (!type) return null;
+    let items = [];
+    try { items = JSON.parse(params.get('items') || '[]'); } catch(e) {}
+    return {
+      order_type: type,
+      order_id: params.get('id') || '',
+      customer_name: params.get('name') || '',
+      items,
+      subtotal: parseFloat(params.get('subtotal') || 0),
+      delivery_fee: parseFloat(params.get('fee') || 0),
+      total: parseFloat(params.get('total') || 0),
+      pickup_time: params.get('pickup_time') || '',
+      delivery_address: params.get('address') || '',
+      delivery_time: params.get('delivery_time') || '',
+    };
+  }
+
+  function render(o) {
+    const isDelivery = o.order_type === 'delivery';
+    let items = [];
+    try {
+      items = typeof o.items === 'string' ? JSON.parse(o.items) : (o.items || []);
+    } catch(e) { items = []; }
+
+    // Items HTML
+    const itemsHtml = items.length
+      ? items.map(item => `
+        <div class="item-row">
+          <div class="item-qty">${esc(item.qty || item.quantity || 1)}</div>
+          <div class="item-name">${esc(item.name)}</div>
+          <div class="item-price">${fmt((item.price || 0) * (item.qty || item.quantity || 1))}</div>
+        </div>`).join('')
+      : '<div class="item-row" style="color:var(--muted)">Keine Artikel</div>';
+
+    // Delivery fee row only if > 0
+    const feeRow = (o.delivery_fee > 0)
+      ? `<div class="total-row"><span>Liefergebühr</span><span>${fmt(o.delivery_fee)}</span></div>`
+      : '';
+
+    // Logistics info
+    const logisticsCard = isDelivery
+      ? `<div class="card">
+          <div class="card-title">Lieferung</div>
+          <div class="info-row"><span class="info-label">Adresse</span><span class="info-value">${esc(o.delivery_address || '–')}</span></div>
+          <div class="info-row"><span class="info-label">Lieferzeitpunkt</span><span class="info-value">${esc(o.delivery_time || '–')}</span></div>
+        </div>`
+      : `<div class="card">
+          <div class="card-title">Abholung</div>
+          <div class="info-row"><span class="info-label">Abholzeit</span><span class="info-value">${esc(o.pickup_time || '–')}</span></div>
+          <div class="info-row"><span class="info-label">Adresse</span><span class="info-value">Ulmer Str. 5, 88400 Biberach</span></div>
+        </div>`;
+
+    // Payment section for delivery only
+    const orderId = o.order_id || '—';
+    const paymentSection = isDelivery
+      ? `<div class="payment-box">
+          <div class="payment-title">💳 Zahlung per Überweisung</div>
+          <div class="payment-detail">
+            <strong>Empfänger:</strong> Hausbrauerei Biberach<br>
+            <strong>IBAN:</strong> DE00 0000 0000 0000 0000 00<br>
+            <strong>Betrag:</strong> ${fmt(o.total)}<br>
+            <strong>Verwendungszweck:</strong><br>
+            <span class="payment-ref">Bestellung ${esc(orderId)}</span>
+          </div>
+        </div>`
+      : `<div class="payment-box" style="background:#fff8e1;border-color:#ffc107;">
+          <div class="payment-title" style="color:#856404;">💵 Zahlung bei Abholung</div>
+          <div class="payment-detail">Bitte halte <strong>${fmt(o.total)}</strong> bar oder per EC-Karte bereit.</div>
+        </div>`;
+
+    document.getElementById('app').innerHTML = `
+      <div class="card">
+        <div class="card-title">Bestelldetails</div>
+        <div class="info-row">
+          <span class="info-label">Typ</span>
+          <span class="info-value">
+            <span class="type-badge ${isDelivery ? 'type-delivery' : 'type-pickup'}">
+              ${isDelivery ? '🚚 Lieferung' : '🛍 Pickup'}
+            </span>
+          </span>
+        </div>
+        ${o.order_id ? `<div class="info-row"><span class="info-label">Bestellnummer</span><span class="info-value" style="font-family:monospace">${esc(o.order_id)}</span></div>` : ''}
+        ${o.customer_name ? `<div class="info-row"><span class="info-label">Name</span><span class="info-value">${esc(o.customer_name)}</span></div>` : ''}
+      </div>
+
+      ${logisticsCard}
+
+      <div class="card">
+        <div class="card-title">Warenkorb</div>
+        ${itemsHtml}
+        <div style="margin-top:12px; padding-top:4px;">
+          <div class="total-row"><span>Zwischensumme</span><span>${fmt(o.subtotal)}</span></div>
+          ${feeRow}
+          <div class="total-row grand"><span>Gesamt</span><span>${fmt(o.total)}</span></div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:0; overflow:hidden; border:none;">
+        ${paymentSection}
+      </div>
+    `;
+  }
+
+  function showError() {
+    document.getElementById('app').innerHTML = `
+      <div class="state-center">
+        <div class="icon">❌</div>
+        <p>Bestellung nicht gefunden.<br>Bitte kontaktiere uns telefonisch.</p>
+      </div>`;
+  }
+
+  const order = parseOrder();
+  if (order) {
+    render(order);
+  } else {
+    showError();
+  }
+})();
+</script>
+</body>
+</html>
