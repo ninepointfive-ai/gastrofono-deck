@@ -1913,6 +1913,15 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   }
   .help-overlay { display: none !important; }
 }
+
+/* ───────── iOS memory fix: skip GPU compositing on inactive slides ───────── */
+.slide:not(.is-active) {
+  content-visibility: hidden;
+}
+.slide:not(.is-active) * {
+  animation-play-state: paused !important;
+  will-change: auto !important;
+}
 </style>
 </head>
 <body>
