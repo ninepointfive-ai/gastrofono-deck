@@ -2587,13 +2587,16 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   // ───── Stage skalieren — füllt Viewport exakt ─────
   const stage = document.getElementById('stage');
   function fitStage() {
-    const w = document.documentElement.clientWidth;
-    const h = document.documentElement.clientHeight;
+    const vv = window.visualViewport;
+    const w = vv ? vv.width  : document.documentElement.clientWidth;
+    const h = vv ? vv.height : document.documentElement.clientHeight;
     const s = Math.min(w / 1920, h / 1080);
     stage.style.transform = `translate(-50%, -50%) scale(${s})`;
   }
   fitStage();
+  setTimeout(fitStage, 300); // iOS Safari address-bar settle
   window.addEventListener('resize', fitStage);
+  if (window.visualViewport) window.visualViewport.addEventListener('resize', fitStage);
   document.addEventListener('fullscreenchange', fitStage);
   document.addEventListener('webkitfullscreenchange', fitStage);
 
