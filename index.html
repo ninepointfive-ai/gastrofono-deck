@@ -1910,79 +1910,49 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
 .webapp {
   background: var(--brand-ghost);
   align-items: center;
-  padding-top: 86px;
-  padding-bottom: 78px;
+  padding-top: 60px;
+  padding-bottom: 52px;
 }
 .webapp .webapp-head {
   width: 100%;
   max-width: 1480px;
   text-align: center;
 }
-.webapp .eyebrow { margin-bottom: 14px; }
+.webapp .eyebrow { margin-bottom: 10px; }
 .webapp-h2 {
-  font-size: 58px;
-  line-height: 1.05;
+  font-size: 48px;
+  line-height: 1.06;
   letter-spacing: -0.028em;
   font-weight: 600;
   color: var(--ink);
 }
 .webapp-h2 strong { color: var(--gastro); font-weight: 700; }
 .webapp-sub {
-  font-size: 22px;
+  font-size: 20px;
   line-height: 1.45;
   color: var(--ink-soft);
-  margin: 16px auto 0;
-  max-width: 1040px;
+  margin: 12px auto 0;
+  max-width: 1060px;
 }
 .browser-frame {
-  margin-top: 34px;
-  width: 1340px;
+  margin: 22px auto 0;
+  width: fit-content;
   max-width: 100%;
-  border-radius: 16px;
-  background: var(--paper);
+  border-radius: 14px;
   border: 1px solid var(--hair);
   box-shadow: var(--shadow-lg);
   overflow: hidden;
 }
-.browser-bar {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  height: 44px;
-  padding: 0 18px;
-  background: var(--canvas);
-  border-bottom: 1px solid var(--hair);
-}
-.browser-bar .bdot {
-  width: 11px; height: 11px; border-radius: 50%;
-  background: #d6d6df; flex-shrink: 0;
-}
-.browser-bar .bdot:nth-child(1) { background: #ec6a5e; }
-.browser-bar .bdot:nth-child(2) { background: #f4be4f; }
-.browser-bar .bdot:nth-child(3) { background: #61c454; }
-.browser-bar .browser-url {
-  margin-left: 14px;
-  flex: 1;
-  background: var(--paper);
-  border: 1px solid var(--hair);
-  border-radius: 7px;
-  padding: 6px 16px;
-  font-size: 13px;
-  color: var(--mute);
-  letter-spacing: 0.02em;
-  max-width: 460px;
-}
 .browser-shot {
   position: relative;
-  aspect-ratio: 2538 / 1237;
-  background: var(--canvas);
+  line-height: 0;
 }
 .browser-shot img {
-  width: 100%;
-  height: 100%;
   display: block;
-  object-fit: cover;
-  object-position: top center;
+  max-width: 1580px;
+  max-height: 720px;
+  width: auto;
+  height: auto;
 }
 .callout {
   position: absolute;
@@ -2030,7 +2000,7 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   align-items: center;
   justify-content: center;
   gap: 14px;
-  margin-top: 26px;
+  margin-top: 18px;
   font-size: 18px;
   color: var(--ink-soft);
 }
@@ -2682,25 +2652,21 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
     </div>
 
     <div class="webapp-head">
-      <div class="eyebrow gastro reveal" style="--i:0">Die Web-App · Live-Dashboard</div>
-      <h2 class="webapp-h2 reveal" style="--i:1">Jeder Anruf wird zur <strong>messbaren Zahl</strong></h2>
-      <p class="webapp-sub reveal" style="--i:2">Reservierungen, Anrufvolumen und Gesprächszeit in Echtzeit, statt Bauchgefühl. Der Wirt sieht schwarz auf weiß, was sonst unbeantwortet verloren ginge.</p>
+      <div class="eyebrow gastro reveal" style="--i:0">Live-Dashboard</div>
+      <h2 class="webapp-h2 reveal" style="--i:1"><strong>Messbar</strong> statt Bauchgefühl</h2>
+      <p class="webapp-sub reveal" style="--i:2">Reservierungen, Anrufvolumen und Gesprächszeit in Echtzeit, schwarz auf weiß. Der Wirt sieht genau, was sonst unbeantwortet verloren ginge.</p>
     </div>
 
     <figure class="browser-frame reveal" style="--i:3">
-      <div class="browser-bar">
-        <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
-        <span class="browser-url">app.gastrofon.de/dashboard</span>
-      </div>
       <div class="browser-shot">
         <img src="assets/webapp/dashboard.png" alt="Gastrofon Dashboard — Übersicht mit Kennzahlen, Anrufverlaufskurve und Anruftypen">
-        <span class="callout point-bl reveal" style="--i:4; top:4%; left:27%">466 Reservierungen ohne Personal</span>
-        <span class="callout brand point-bl reveal" style="--i:5; top:45%; right:3%">Anruftypen auf einen Blick</span>
+        <span class="callout point-bl reveal" style="--i:4; top:19%; left:17%">466 Reservierungen ohne Personal</span>
+        <span class="callout brand point-bl reveal" style="--i:5; top:44%; right:5%">Anruftypen auf einen Blick</span>
       </div>
     </figure>
 
     <div class="webapp-cap reveal" style="--i:6">
-      <span>Messbarer ROI</span><span class="sep">·</span><span>Kein Blackbox-Agent</span><span class="sep">·</span><span>Volumen sichtbar gemacht</span>
+      <span>Messbarer ROI</span><span class="sep">·</span><span>Kein Blackbox-Agent</span><span class="sep">·</span><span>Volles Anrufvolumen im Blick</span>
     </div>
 
     <div class="slide-footer">
@@ -2717,20 +2683,16 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
     </div>
 
     <div class="webapp-head">
-      <div class="eyebrow gastro reveal" style="--i:0">Die Web-App · Anrufverlauf</div>
-      <h2 class="webapp-h2 reveal" style="--i:1">Lückenlose <strong>Nachvollziehbarkeit</strong>, Anruf für Anruf</h2>
-      <p class="webapp-sub reveal" style="--i:2">Jeder eingegangene Anruf mit Anliegen-Typ, KI-Zusammenfassung und Dauer, filterbar nach Zeitraum und Anliegen. Nichts verschwindet im Nichts.</p>
+      <div class="eyebrow gastro reveal" style="--i:0">Anrufverlauf</div>
+      <h2 class="webapp-h2 reveal" style="--i:1">Lückenlose <strong>Nachvollziehbarkeit</strong></h2>
+      <p class="webapp-sub reveal" style="--i:2">Jeder eingegangene Anruf mit Anliegen-Typ, KI-Zusammenfassung und Dauer, filterbar nach Zeitraum und Anliegen. Nichts geht unter.</p>
     </div>
 
     <figure class="browser-frame reveal" style="--i:3">
-      <div class="browser-bar">
-        <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
-        <span class="browser-url">app.gastrofon.de/anrufverlauf</span>
-      </div>
       <div class="browser-shot">
         <img src="assets/webapp/anrufverlauf.png" alt="Gastrofon Anrufverlauf — Liste aller Anrufe mit Typ, Zusammenfassung und Dauer">
-        <span class="callout point-bl reveal" style="--i:4; top:4%; left:30%">Filter nach Anliegen &amp; Zeitraum</span>
-        <span class="callout brand point-tl reveal" style="--i:5; bottom:7%; left:32%">KI fasst jedes Gespräch zusammen</span>
+        <span class="callout point-bl reveal" style="--i:4; top:12%; left:21%">Filter nach Anliegen &amp; Zeitraum</span>
+        <span class="callout brand point-bl reveal" style="--i:5; top:40%; right:4%">KI fasst jedes Gespräch zusammen</span>
       </div>
     </figure>
 
@@ -2752,20 +2714,16 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
     </div>
 
     <div class="webapp-head">
-      <div class="eyebrow gastro reveal" style="--i:0">Die Web-App · Anrufdetail</div>
+      <div class="eyebrow gastro reveal" style="--i:0">Anrufdetail</div>
       <h2 class="webapp-h2 reveal" style="--i:1">Aufnahme und Transkript, <strong>volle Transparenz</strong></h2>
       <p class="webapp-sub reveal" style="--i:2">Zu jedem Anruf: KI-Zusammenfassung, abspielbare Original-Aufnahme und das komplette Gespräch Wort für Wort. Qualität jederzeit überprüfbar.</p>
     </div>
 
     <figure class="browser-frame reveal" style="--i:3">
-      <div class="browser-bar">
-        <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
-        <span class="browser-url">app.gastrofon.de/anrufverlauf · Anrufdetails</span>
-      </div>
       <div class="browser-shot">
         <img src="assets/webapp/anrufdetail.png" alt="Gastrofon Anrufdetail — Zusammenfassung, Gesprächsaufnahme und vollständiges Transkript">
-        <span class="callout point-bl reveal" style="--i:4; top:50%; left:24%">Original-Aufnahme abspielbar</span>
-        <span class="callout brand point-tl reveal" style="--i:5; bottom:6%; left:30%">Wort-für-Wort-Transkript</span>
+        <span class="callout point-bl reveal" style="--i:4; top:62%; left:30%">Original-Aufnahme abspielbar</span>
+        <span class="callout brand point-tl reveal" style="--i:5; bottom:9%; left:31%">Wort-für-Wort-Transkript</span>
       </div>
     </figure>
 
