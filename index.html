@@ -3,7 +3,6 @@
 <head>
 <meta charset="utf-8">
 <title>Gastrofon · Produktvorstellung — ninepointfive AI</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%238EB216'/%3E%3Cg stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' fill='none' transform='translate(4,4)'%3E%3Cpath d='M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2'/%3E%3Cpath d='M7 2v20'/%3E%3Cpath d='M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7'/%3E%3C/g%3E%3C/svg%3E">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -431,18 +430,18 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.02em; }
 .cover-logo-icon {
   width: 80px;
   height: 80px;
-  background: #8EB216;
+  background: var(--brand);
   border-radius: 22px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 0 18px rgba(142,178,22,.55), 0 0 48px rgba(112,150,12,.35), 0 4px 20px rgba(112,150,12,.4);
+  box-shadow: 0 0 18px rgba(155,202,26,.55), 0 0 48px rgba(123,163,14,.35), 0 4px 20px rgba(123,163,14,.4);
   animation: logo-glow 3s ease-in-out infinite;
 }
 @keyframes logo-glow {
-  0%, 100% { box-shadow: 0 0 10px rgba(142,178,22,.30), 0 4px 16px rgba(112,150,12,.25); }
-  50%       { box-shadow: 0 0 18px rgba(142,178,22,.48), 0 4px 20px rgba(112,150,12,.35); }
+  0%, 100% { box-shadow: 0 0 10px rgba(155,202,26,.30), 0 4px 16px rgba(123,163,14,.25); }
+  50%       { box-shadow: 0 0 18px rgba(155,202,26,.48), 0 4px 20px rgba(123,163,14,.35); }
 }
 .cover-logo-icon svg { width: 40px; height: 40px; color: #fff; }
 .cover-logo-text {
@@ -456,7 +455,7 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.02em; }
   animation: logo-text-glow-white 3s ease-in-out infinite;
 }
 .cover-logo-fon {
-  color: #8EB216;
+  color: var(--brand);
   animation: logo-text-glow-green 3s ease-in-out infinite;
 }
 @keyframes logo-text-glow-white {
@@ -464,8 +463,8 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.02em; }
   50%       { text-shadow: 0 0 14px rgba(255,255,255,.32); }
 }
 @keyframes logo-text-glow-green {
-  0%, 100% { text-shadow: 0 0 8px rgba(142,178,22,.22); }
-  50%       { text-shadow: 0 0 14px rgba(142,178,22,.40); }
+  0%, 100% { text-shadow: 0 0 8px rgba(155,202,26,.22); }
+  50%       { text-shadow: 0 0 14px rgba(155,202,26,.40); }
 }
 .cover-title {
   font-size: 128px;
@@ -718,7 +717,7 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.02em; }
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 48px;
+  gap: 56px;
 }
 .benefit-item {
   display: flex;
@@ -726,8 +725,8 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.02em; }
   gap: 24px;
 }
 .benefit-icon {
-  flex: 0 0 54px;
-  width: 54px; height: 54px;
+  flex: 0 0 52px;
+  width: 52px; height: 52px;
   border-radius: 14px;
   background: var(--brand-light);
   color: var(--brand);
@@ -735,16 +734,16 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.02em; }
   align-items: center;
   justify-content: center;
 }
-.benefit-icon svg { width: 28px; height: 28px; }
+.benefit-icon svg { width: 26px; height: 26px; }
 .benefit-body strong {
   display: block;
-  font-size: 22px;
+  font-size: 21px;
   font-weight: 600;
   color: var(--ink);
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 .benefit-body p {
-  font-size: 19px;
+  font-size: 17px;
   line-height: 1.45;
   color: var(--ink-soft);
   margin: 0;
@@ -1343,7 +1342,7 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.02em; }
 }
 .outro-logo-icon {
   width: 54px; height: 54px;
-  background: #8EB216;
+  background: var(--brand);
   border-radius: 16px;
   display: flex; align-items: center; justify-content: center;
   animation: logo-glow 3s ease-in-out infinite;
@@ -1356,7 +1355,7 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.02em; }
   line-height: 1;
 }
 .outro-logo-gastro { color: #fff; animation: logo-text-glow-white 3s ease-in-out infinite; }
-.outro-logo-fon { color: #8EB216; animation: logo-text-glow-green 3s ease-in-out infinite; }
+.outro-logo-fon { color: var(--brand); animation: logo-text-glow-green 3s ease-in-out infinite; }
 .outro-contact {
   display: inline-flex;
   flex-direction: column;
@@ -1604,6 +1603,7 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   align-items: center;
   justify-content: center;
   flex: 0 0 38px;
+  animation: pulse-ring-soft 3.6s ease-out infinite;
 }
 .uc-cta-phone .icon svg { width: 16px; height: 16px; }
 .uc-cta-phone .number {
@@ -1651,14 +1651,6 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
 .audio-btn:hover { background: #6A8E0C; }
 .audio-btn:active { transform: scale(.94); }
 .audio-btn svg { width: 16px; height: 16px; }
-.audio-player:not(.is-playing) .audio-btn {
-  animation: audio-pulse-ring 1.8s ease-out infinite;
-}
-@keyframes audio-pulse-ring {
-  0%   { box-shadow: 0 0 0 0px  rgba(123, 163, 14, 0.55); }
-  70%  { box-shadow: 0 0 0 10px rgba(123, 163, 14, 0);    }
-  100% { box-shadow: 0 0 0 0px  rgba(123, 163, 14, 0);    }
-}
 .audio-btn .icon-pause { display: none; }
 .audio-player.is-playing .audio-btn .icon-play { display: none; }
 .audio-player.is-playing .audio-btn .icon-pause { display: block; }
@@ -1687,7 +1679,6 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   flex-shrink: 0;
   letter-spacing: 0.02em;
 }
-
 .audio-speed-btn {
   background: none;
   border: 1px solid var(--hair);
@@ -1706,7 +1697,6 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
 }
 .audio-speed-btn:hover { color: var(--brand); border-color: var(--brand); }
 .audio-speed-btn.is-fast { background: var(--brand); color: #fff; border-color: var(--brand); }
-
 
 .qr-floater {
   position: absolute;
@@ -1828,31 +1818,31 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   display: none;
   position: fixed;
   inset: 0;
-  background: #fff;
+  background: linear-gradient(180deg, #060d04 0%, #0d180a 100%);
   z-index: 999999;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #111b0a;
+  color: #fff;
   text-align: center;
   padding: 40px 32px;
   gap: 0;
 }
 #mg-icon {
   width: 64px; height: 64px;
-  background: rgba(153,199,24,.12);
-  border: 1px solid rgba(153,199,24,.25);
+  background: rgba(106,191,94,.12);
+  border: 1px solid rgba(106,191,94,.25);
   border-radius: 20px;
   display: flex; align-items: center; justify-content: center;
   margin-bottom: 28px;
 }
-#mg-icon svg { width: 30px; height: 30px; color: #8EB216; }
+#mg-icon svg { width: 30px; height: 30px; color: #6abf5e; }
 #mobile-gate h2 {
   font-size: 22px; font-weight: 700;
   margin: 0 0 10px; letter-spacing: -.02em;
 }
 #mobile-gate p {
-  font-size: 15px; color: rgba(17,27,10,.5);
+  font-size: 15px; color: rgba(255,255,255,.5);
   margin: 0 0 36px; line-height: 1.5; max-width: 300px;
 }
 .mg-btn {
@@ -1865,12 +1855,12 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
 .mg-btn:active { opacity: .75; }
 .mg-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
 .mg-btn-primary {
-  background: #8EB216; color: #060d04; margin-bottom: 12px;
+  background: #6abf5e; color: #060d04; margin-bottom: 12px;
 }
 .mg-btn-secondary {
-  background: rgba(17,27,10,.05);
-  border: 1px solid rgba(17,27,10,.12);
-  color: #111b0a;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  color: #fff;
 }
 #mg-logo {
   position: absolute; bottom: 32px;
@@ -1881,34 +1871,12 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
 /* Mobile Gate wird per JS nach Passwort-Auth angezeigt */
 
 
-/* ── Tablet-Navigationsbuttons ── */
-#nav-prev, #nav-next {
-  display: none;
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 9999;
-  width: 48px; height: 48px;
-  background: rgba(17,27,10,.07);
-  border: 1px solid rgba(17,27,10,.13);
-  border-radius: 50%;
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
-  transition: background .15s;
-  -webkit-tap-highlight-color: transparent;
-}
-#nav-prev { left: 14px; }
-#nav-next { right: 14px; }
-#nav-prev:hover, #nav-next:hover { background: rgba(17,27,10,.14); }
-#nav-prev svg, #nav-next svg { width: 22px; height: 22px; stroke: rgba(17,27,10,.55); }
-
 /* ═══════════════════════════════════════════════════════
    WEB-APP-SLIDES (erweiterte Variante) — echter Screenshot
    im Browser-Rahmen + Callout-Sprechblasen
    ═══════════════════════════════════════════════════════ */
 .webapp {
-  background: var(--brand-ghost);
+  background: var(--paper);
   align-items: center;
   padding-top: 60px;
   padding-bottom: 52px;
@@ -1926,7 +1894,13 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   font-weight: 600;
   color: var(--ink);
 }
-.webapp-h2 strong { color: var(--gastro); font-weight: 700; }
+.webapp-h2 strong {
+  font-weight: inherit;
+  background: var(--grad-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 .webapp-sub {
   font-size: 20px;
   line-height: 1.45;
@@ -1971,11 +1945,7 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   z-index: 2;
 }
 .callout::before {
-  content: "";
-  width: 9px; height: 9px;
-  border-radius: 50%;
-  background: #fff;
-  flex-shrink: 0;
+  content: none;
 }
 .callout.brand {
   background: var(--brand);
@@ -2000,7 +1970,7 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   align-items: center;
   justify-content: center;
   gap: 14px;
-  margin-top: 18px;
+  margin-top: 32px;
   font-size: 18px;
   color: var(--ink-soft);
 }
@@ -2014,7 +1984,7 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   content: "";
   width: 7px; height: 7px;
   border-radius: 50%;
-  background: var(--gastro);
+  background: #9BCA1A;
 }
 .webapp-cap .sep { color: var(--hair); font-weight: 400; }
 .webapp-cap .sep::before { display: none; }
@@ -2033,79 +2003,9 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   }
   .help-overlay { display: none !important; }
 }
-
-/* ───────── iOS memory fix: skip GPU compositing on inactive slides ───────── */
-.slide:not(.is-active) {
-  content-visibility: hidden;
-}
-.slide:not(.is-active) * {
-  animation-play-state: paused !important;
-  will-change: auto !important;
-}
-
-/* ───────── Rotation blocker (mobile portrait only) ───────── */
-#rotate-blocker {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 99999;
-  background: #0C1109;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 32px;
-  text-align: center;
-  padding: 40px;
-}
-#rotate-blocker .rotate-icon {
-  width: 80px;
-  height: 80px;
-  color: #9BCA1A;
-  animation: rotate-phone 2s ease-in-out infinite alternate;
-  transform-origin: center center;
-}
-@keyframes rotate-phone {
-  0%,  30% { transform: rotate(0deg);  }
-  70%, 100% { transform: rotate(90deg); }
-}
-#rotate-blocker .rotate-title {
-  font-family: 'Work Sans', sans-serif;
-  font-size: 22px;
-  font-weight: 600;
-  color: #fff;
-  letter-spacing: -0.01em;
-  line-height: 1.3;
-}
-#rotate-blocker .rotate-sub {
-  font-family: 'Work Sans', sans-serif;
-  font-size: 15px;
-  color: rgba(255,255,255,.45);
-  line-height: 1.5;
-}
-@media (max-width: 768px) and (orientation: portrait) {
-  #rotate-blocker { display: flex; }
-}
 </style>
 </head>
 <body>
-
-<div id="rotate-blocker" aria-live="polite">
-  <svg class="rotate-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-    <!-- Handy-Körper (Hochformat) -->
-    <rect x="7" y="3" width="10" height="17" rx="2"/>
-    <line x1="10" y1="5.2" x2="14" y2="5.2" stroke-width="1.1"/>
-    <circle cx="12" cy="17.8" r="0.7" fill="currentColor" stroke="none"/>
-    <!-- Rotationspfeil oben rechts — Pfeilspitze zeigt nach unten -->
-    <path d="M 13 1.5 A 7 7 0 0 1 21.5 9.5"/>
-    <polyline points="20,8 21.5,9.5 23,8"/>
-    <!-- Rotationspfeil unten links — Pfeilspitze zeigt nach oben -->
-    <path d="M 11 22.5 A 7 7 0 0 1 2.5 14.5"/>
-    <polyline points="1,16 2.5,14.5 4,16"/>
-  </svg>
-  <div class="rotate-title">Bitte Handy drehen</div>
-  <div class="rotate-sub">Für das beste Erlebnis<br>bitte ins Querformat wechseln.</div>
-</div>
-
 
 
 <div id="progress-track"><div id="progress-bar"></div></div>
@@ -2127,7 +2027,12 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
     <div class="cover-content">
       <div class="cover-logo reveal" style="--i:0">
         <div class="cover-logo-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m16 2-2.3 2.3a3 3 0 0 0 0 4.2l1.8 1.8a3 3 0 0 0 4.2 0L22 8"/>
+            <path d="M15 15 3.3 3.3a4.2 4.2 0 0 0 0 6l7.3 7.3c.7.7 2 .7 2.8 0L15 15Zm0 0 7 7"/>
+            <path d="m2.1 21.8 6.4-6.3"/>
+            <path d="m19 5-7 7"/>
+          </svg>
         </div>
         <span class="cover-logo-text"><span class="cover-logo-gastro">Gastro</span><span class="cover-logo-fon">fon</span></span>
       </div>
@@ -2343,7 +2248,7 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
           </div>
           <div class="sms-body">
             <div class="sms-time"><strong>Heute</strong> 20:50</div>
-            <div class="sms-bubble">Hallo Luc! Deine Tischreservierung ist bestätigt.<br>Datum: Fr, 15.05.2026 um 17:30 Uhr<br>Personen: 4<br>Buchung: <a href="https://go.ninepointfive.ai/UGUSZ" target="_blank" rel="noopener" style="color:#007aff;word-break:break-all;">https://go.ninepointfive.ai/UGUSZ</a></div>
+            <div class="sms-bubble">Hallo Luc! Deine Tischreservierung ist bestätigt.<br>Datum: Fr, 15.05.2026 um 17:30 Uhr<br>Personen: 4<br>Buchung: <a href="https://go.ninepointfive.ai/SOFkh" target="_blank" rel="noopener" style="color:#007aff;word-break:break-all;">https://go.ninepointfive.ai/SOFkh</a></div>
           </div>
           <div class="sms-input-bar">
             <div class="sms-add-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
@@ -2430,7 +2335,7 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
           </div>
           <div class="sms-body">
             <div class="sms-time"><strong>Heute</strong> 22:00</div>
-            <div class="sms-bubble">Hallo Luc! Deine Tischreservierung wurde geändert.<br>Datum: Fr, 15.05.2026 um 21:00 Uhr<br>Personen: 6<br>Buchung: <a href="https://go.ninepointfive.ai/SSbWm" target="_blank" rel="noopener" style="color:#007aff;word-break:break-all;">https://go.ninepointfive.ai/SSbWm</a></div>
+            <div class="sms-bubble">Hallo Luc! Deine Tischreservierung wurde geändert.<br>Datum: Fr, 15.05.2026 um 21:00 Uhr<br>Personen: 6<br>Buchung: <a href="https://go.ninepointfive.ai/vkzFx" target="_blank" rel="noopener" style="color:#007aff;word-break:break-all;">https://go.ninepointfive.ai/vkzFx</a></div>
           </div>
           <div class="sms-input-bar">
             <div class="sms-add-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
@@ -2648,25 +2553,23 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   <section class="slide webapp" data-extended>
     <div class="slide-chrome">
       <div class="brand-mark"><span class="dot"></span>Gastrofon</div>
-      <div class="slide-tag"><span class="pill">Das Produkt</span></div>
+      <div class="slide-tag"><span class="pill">Gastrofon Web App</span></div>
     </div>
 
     <div class="webapp-head">
-      <div class="eyebrow gastro reveal" style="--i:0">Live-Dashboard</div>
-      <h2 class="webapp-h2 reveal" style="--i:1"><strong>Messbar</strong> statt Bauchgefühl</h2>
-      <p class="webapp-sub reveal" style="--i:2">Reservierungen, Anrufvolumen und Gesprächszeit in Echtzeit, schwarz auf weiß. Der Wirt sieht genau, was sonst unbeantwortet verloren ginge.</p>
+      <div class="eyebrow reveal" style="--i:0">Live-Dashboard</div>
+      <h2 class="webapp-h2 reveal" style="--i:1">Alle Kennzahlen. <strong>Auf einen Blick.</strong></h2>
+      <p class="webapp-sub reveal" style="--i:2">Reservierungen, Anrufvolumen und durchschnittliche Gesprächsdauer - direkt im Dashboard. Der KI-Telefonassistent dokumentiert lückenlos jeden Anruf, automatisch und in Echtzeit.</p>
     </div>
 
     <figure class="browser-frame reveal" style="--i:3">
       <div class="browser-shot">
         <img src="assets/webapp/dashboard.png" alt="Gastrofon Dashboard — Übersicht mit Kennzahlen, Anrufverlaufskurve und Anruftypen">
-        <span class="callout point-bl reveal" style="--i:4; top:19%; left:17%">466 Reservierungen ohne Personal</span>
-        <span class="callout brand point-bl reveal" style="--i:5; top:44%; right:5%">Anruftypen auf einen Blick</span>
       </div>
     </figure>
 
     <div class="webapp-cap reveal" style="--i:6">
-      <span>Messbarer ROI</span><span class="sep">·</span><span>Kein Blackbox-Agent</span><span class="sep">·</span><span>Volles Anrufvolumen im Blick</span>
+      <span>Echtzeit-KPIs</span><span class="sep">·</span><span>Anruftypen kategorisiert</span><span class="sep">·</span><span>Kein manueller Aufwand</span>
     </div>
 
     <div class="slide-footer">
@@ -2679,25 +2582,23 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   <section class="slide webapp" data-extended>
     <div class="slide-chrome">
       <div class="brand-mark"><span class="dot"></span>Gastrofon</div>
-      <div class="slide-tag"><span class="pill">Das Produkt</span></div>
+      <div class="slide-tag"><span class="pill">Gastrofon Web App</span></div>
     </div>
 
     <div class="webapp-head">
-      <div class="eyebrow gastro reveal" style="--i:0">Anrufverlauf</div>
-      <h2 class="webapp-h2 reveal" style="--i:1">Lückenlose <strong>Nachvollziehbarkeit</strong></h2>
-      <p class="webapp-sub reveal" style="--i:2">Jeder eingegangene Anruf mit Anliegen-Typ, KI-Zusammenfassung und Dauer, filterbar nach Zeitraum und Anliegen. Nichts geht unter.</p>
+      <div class="eyebrow reveal" style="--i:0">Anrufverlauf</div>
+      <h2 class="webapp-h2 reveal" style="--i:1">Jeder Anruf. <strong>Lückenlos protokolliert.</strong></h2>
+      <p class="webapp-sub reveal" style="--i:2">Vollständige Übersicht aller eingegangenen Anrufe mit Anruftyp, KI-Zusammenfassung und Gesprächsdauer. Filterbar nach Typ und Zeitraum.</p>
     </div>
 
     <figure class="browser-frame reveal" style="--i:3">
       <div class="browser-shot">
         <img src="assets/webapp/anrufverlauf.png" alt="Gastrofon Anrufverlauf — Liste aller Anrufe mit Typ, Zusammenfassung und Dauer">
-        <span class="callout point-bl reveal" style="--i:4; top:12%; left:21%">Filter nach Anliegen &amp; Zeitraum</span>
-        <span class="callout brand point-bl reveal" style="--i:5; top:40%; right:4%">KI fasst jedes Gespräch zusammen</span>
       </div>
     </figure>
 
     <div class="webapp-cap reveal" style="--i:6">
-      <span>Nichts geht verloren</span><span class="sep">·</span><span>Sofort durchsuchbar</span><span class="sep">·</span><span>Kontrolle beim Wirt</span>
+      <span>Alle Anrufe protokolliert</span><span class="sep">·</span><span>Filterbar</span><span class="sep">·</span><span>KI-Zusammenfassung je Gespräch</span>
     </div>
 
     <div class="slide-footer">
@@ -2710,25 +2611,23 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   <section class="slide webapp" data-extended>
     <div class="slide-chrome">
       <div class="brand-mark"><span class="dot"></span>Gastrofon</div>
-      <div class="slide-tag"><span class="pill">Das Produkt</span></div>
+      <div class="slide-tag"><span class="pill">Gastrofon Web App</span></div>
     </div>
 
     <div class="webapp-head">
-      <div class="eyebrow gastro reveal" style="--i:0">Anrufdetail</div>
-      <h2 class="webapp-h2 reveal" style="--i:1">Aufnahme und Transkript, <strong>volle Transparenz</strong></h2>
-      <p class="webapp-sub reveal" style="--i:2">Zu jedem Anruf: KI-Zusammenfassung, abspielbare Original-Aufnahme und das komplette Gespräch Wort für Wort. Qualität jederzeit überprüfbar.</p>
+      <div class="eyebrow reveal" style="--i:0">Anrufdetails</div>
+      <h2 class="webapp-h2 reveal" style="--i:1">Zusammenfassung, Aufnahme und Transkript. <strong>Auf Abruf.</strong></h2>
+      <p class="webapp-sub reveal" style="--i:2">Jedes Gespräch vollständig nachvollziehbar: KI-Zusammenfassung, abspielbare Original-Aufnahme und vollständiges Wort-für-Wort-Transkript.</p>
     </div>
 
     <figure class="browser-frame reveal" style="--i:3">
       <div class="browser-shot">
         <img src="assets/webapp/anrufdetail.png" alt="Gastrofon Anrufdetail — Zusammenfassung, Gesprächsaufnahme und vollständiges Transkript">
-        <span class="callout point-bl reveal" style="--i:4; top:62%; left:30%">Original-Aufnahme abspielbar</span>
-        <span class="callout brand point-tl reveal" style="--i:5; bottom:9%; left:31%">Wort-für-Wort-Transkript</span>
       </div>
     </figure>
 
     <div class="webapp-cap reveal" style="--i:6">
-      <span>Vertrauen statt Blackbox</span><span class="sep">·</span><span>Qualität prüfbar</span><span class="sep">·</span><span>Konfiguration im selben Cockpit</span>
+      <span>KI-Zusammenfassung</span><span class="sep">·</span><span>Original-Aufnahme</span><span class="sep">·</span><span>Vollständiges Transkript</span>
     </div>
 
     <div class="slide-footer">
@@ -2836,6 +2735,16 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   </div>
   <h2>Für Desktop optimiert</h2>
   <p>Diese Präsentation ist für größere Bildschirme ausgelegt. Öffne sie auf deinem Computer für die beste Erfahrung.</p>
+  <a class="mg-btn mg-btn-primary" href="gastrofon_deck.pdf" download="Gastrofon_Produktvorstellung.pdf">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2v13"/><path d="m8 11 4 4 4-4"/><rect x="2" y="17" width="20" height="5" rx="1"/>
+    </svg>
+    PDF herunterladen
+  </a>
+  <div id="mg-logo">
+    <span style="font-weight:700">Gastro</span><span style="color:#6abf5e;font-weight:700">fon</span>
+    <span>· ninepointfive AI</span>
+  </div>
 </div>
 
 
@@ -2867,10 +2776,7 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
     stage.style.transform = `translate(-50%, -50%) scale(${s})`;
   }
   fitStage();
-  // iOS Safari: address bar animates after load — re-measure at multiple points
-  [100, 300, 600].forEach(t => setTimeout(fitStage, t));
   window.addEventListener('resize', fitStage);
-  if (window.visualViewport) window.visualViewport.addEventListener('resize', fitStage);
   document.addEventListener('fullscreenchange', fitStage);
   document.addEventListener('webkitfullscreenchange', fitStage);
 
@@ -2881,9 +2787,9 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
 
   // ───── Variant + Bonus from query string ─────
   const qs = new URLSearchParams(location.search);
-  if (qs.get('variant') === 'short') document.body.dataset.variant = 'short';
+  if (qs.get('variant') === 'short')    document.body.dataset.variant = 'short';
   if (qs.get('variant') === 'extended') document.body.dataset.variant = 'extended';
-  if (qs.get('bonus') === 'off')      document.body.dataset.bonus = 'off';
+  if (qs.get('bonus') === 'off')        document.body.dataset.bonus = 'off';
 
   // ───── Demo number + QR substitution ─────
   // Usage: ?number=%2B4912345678901  → replaces all data-demo-number elements
@@ -2942,7 +2848,7 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
     });
     audio.addEventListener('loadedmetadata', () => { timeEl.textContent = fmt(audio.duration); });
 
-    // Speed-Button: schaltet ×1.0 → ×1.5
+    // Speed-Button: schaltet ×1.0 → ×1.5 → ×2.0 → ×1.0
     const speeds = [1, 1.5];
     let speedIdx = 0;
     const speedBtn = document.createElement('button');
@@ -3084,38 +2990,20 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
       if (audio) audio.classList.toggle('is-visible');
     }
     else if (e.key.toLowerCase() === 'f') {
-      if (!document.fullscreenElement) document.documentElement.requestFullscreen();
-      else document.exitFullscreen();
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+      else document.exitFullscreen?.();
     }
     else if (e.key === '?' || e.key.toLowerCase() === 'h') { toggleHelp(); }
     else if (e.key === 'Escape') { toggleHelp(false); }
   });
 
 
-  // ───── Tablet-Navigationsbuttons ─────
-  const navPrev = document.getElementById('nav-prev');
-  const navNext = document.getElementById('nav-next');
-  if (navPrev) navPrev.addEventListener('click', prev);
-  if (navNext) navNext.addEventListener('click', next);
-
-  // ───── Click navigation — ganzer Viewport (auch schwarzer Rahmen) ─────
-  document.addEventListener('click', e => {
-    if (e.target.closest('button, a, input, audio, select, textarea, [role="button"], .audio-player, .demo-audio, #nav-prev, #nav-next, #helpOverlay')) return;
+  // ───── Click navigation (linke Hälfte = zurück, rechte Hälfte = vor) ─────
+  document.querySelector('.stage').addEventListener('click', e => {
+    if (e.target.closest('button, a, input, audio, select, textarea, [role="button"], .audio-player, .demo-audio, .callout')) return;
     if (e.clientX < window.innerWidth / 2) prev(); else next();
   });
 
-  // ───── Touch/Swipe navigation ─────
-  let touchStartX = 0, touchStartY = 0;
-  document.addEventListener('touchstart', e => {
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
-  }, { passive: true });
-  document.addEventListener('touchend', e => {
-    const dx = e.changedTouches[0].clientX - touchStartX;
-    const dy = e.changedTouches[0].clientY - touchStartY;
-    if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return; // zu kurz oder eher vertikal
-    if (dx < 0) next(); else prev();
-  }, { passive: true });
 
   // ───── Init ─────
   // Re-evaluate slides after variant filtering applies
@@ -3133,13 +3021,6 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   }, 0);
 })();
 </script>
-
-<button id="nav-prev" aria-label="Vorherige Slide">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-</button>
-<button id="nav-next" aria-label="Nächste Slide">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-</button>
 
 </body>
 </html>
