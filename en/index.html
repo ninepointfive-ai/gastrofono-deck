@@ -2961,6 +2961,11 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
       idx = i;
       const cur = slides[idx];
       if (!cur) return;
+      cur.querySelectorAll('.reveal').forEach(el => {
+        el.style.animation = 'none';
+        void el.offsetHeight;
+        el.style.animation = '';
+      });
       cur.classList.add('is-active');
       runCounters(cur);
       updateProgress();
