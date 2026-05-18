@@ -1469,6 +1469,10 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.02em; }
 /* ───────── Variant: short - hide non-short slides ───────── */
 body[data-variant="short"] .slide:not([data-short]) { display: none !important; }
 
+/* ───────── Variant: extended - show extra web-app slides ───────── */
+.slide[data-extended] { display: none !important; }
+body[data-variant="extended"] .slide[data-extended] { display: flex !important; }
+
 /* Bonus visibility */
 body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
 
@@ -1898,6 +1902,86 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
 #nav-next { right: 14px; }
 #nav-prev:hover, #nav-next:hover { background: rgba(17,27,10,.14); }
 #nav-prev svg, #nav-next svg { width: 22px; height: 22px; stroke: rgba(17,27,10,.55); }
+
+/* ═══════════════════════════════════════════════════════
+   WEB-APP-SLIDES (extended variant) — screenshot in browser frame
+   ═══════════════════════════════════════════════════════ */
+.webapp {
+  background: var(--paper);
+  align-items: center;
+  padding-top: 60px;
+  padding-bottom: 52px;
+}
+.webapp .webapp-head {
+  width: 100%;
+  max-width: 1480px;
+  text-align: center;
+}
+.webapp .eyebrow { margin-bottom: 10px; }
+.webapp-h2 {
+  font-size: 48px;
+  line-height: 1.06;
+  letter-spacing: -0.028em;
+  font-weight: 600;
+  color: var(--ink);
+}
+.webapp-h2 strong {
+  font-weight: inherit;
+  background: var(--grad-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.webapp-sub {
+  font-size: 20px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+  margin: 12px auto 0;
+  max-width: 1060px;
+}
+.browser-frame {
+  margin: 22px auto 0;
+  width: fit-content;
+  max-width: 100%;
+  border-radius: 14px;
+  border: 1px solid var(--hair);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+.browser-shot {
+  position: relative;
+  line-height: 0;
+}
+.browser-shot img {
+  display: block;
+  max-width: 1580px;
+  max-height: 720px;
+  width: auto;
+  height: auto;
+}
+.webapp-cap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 32px;
+  font-size: 18px;
+  color: var(--ink-soft);
+}
+.webapp-cap span {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 500;
+}
+.webapp-cap span::before {
+  content: "";
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #9BCA1A;
+}
+.webapp-cap .sep { color: var(--hair); font-weight: 400; }
+.webapp-cap .sep::before { display: none; }
 
 @media print {
   body { background: #fff; }
@@ -2530,6 +2614,93 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
     </div>
   </section>
 
+  <!-- ╔══════ Web-App 1 · Dashboard (only ?variant=extended) ══════╗ -->
+  <section class="slide webapp" data-extended>
+    <div class="slide-chrome">
+      <div class="brand-mark"><span class="dot"></span>Gastrofon</div>
+      <div class="slide-tag"><span class="pill">Gastrofon Web App</span></div>
+    </div>
+
+    <div class="webapp-head">
+      <div class="eyebrow reveal" style="--i:0">Live Dashboard</div>
+      <h2 class="webapp-h2 reveal" style="--i:1">All KPIs. <strong>At a Glance.</strong></h2>
+      <p class="webapp-sub reveal" style="--i:2">Reservations, call volume and average call duration - directly in the dashboard. The AI phone assistant documents every call automatically and in real time.</p>
+    </div>
+
+    <figure class="browser-frame reveal" style="--i:3">
+      <div class="browser-shot">
+        <img src="../assets/webapp/dashboard.png" alt="Gastrofon Dashboard - Overview with KPIs, call volume chart and call types">
+      </div>
+    </figure>
+
+    <div class="webapp-cap reveal" style="--i:6">
+      <span>Real-time KPIs</span><span class="sep">·</span><span>Call types categorised</span><span class="sep">·</span><span>No manual effort</span>
+    </div>
+
+    <div class="slide-footer">
+      <span>ninepointfive.ai · Gastrofon · Web App</span>
+      <span class="page-counter">09 / 12</span>
+    </div>
+  </section>
+
+  <!-- ╔══════ Web-App 2 · Call Log (only ?variant=extended) ══════╗ -->
+  <section class="slide webapp" data-extended>
+    <div class="slide-chrome">
+      <div class="brand-mark"><span class="dot"></span>Gastrofon</div>
+      <div class="slide-tag"><span class="pill">Gastrofon Web App</span></div>
+    </div>
+
+    <div class="webapp-head">
+      <div class="eyebrow reveal" style="--i:0">Call Log</div>
+      <h2 class="webapp-h2 reveal" style="--i:1">Every Call. <strong>Fully Documented.</strong></h2>
+      <p class="webapp-sub reveal" style="--i:2">Complete overview of all incoming calls with call type, AI summary and call duration. Filterable by type and time period.</p>
+    </div>
+
+    <figure class="browser-frame reveal" style="--i:3">
+      <div class="browser-shot">
+        <img src="../assets/webapp/anrufverlauf.png" alt="Gastrofon Call Log - List of all calls with type, summary and duration">
+      </div>
+    </figure>
+
+    <div class="webapp-cap reveal" style="--i:6">
+      <span>All calls logged</span><span class="sep">·</span><span>Filterable</span><span class="sep">·</span><span>AI summary per call</span>
+    </div>
+
+    <div class="slide-footer">
+      <span>ninepointfive.ai · Gastrofon · Web App</span>
+      <span class="page-counter">10 / 12</span>
+    </div>
+  </section>
+
+  <!-- ╔══════ Web-App 3 · Call Details (only ?variant=extended) ══════╗ -->
+  <section class="slide webapp" data-extended>
+    <div class="slide-chrome">
+      <div class="brand-mark"><span class="dot"></span>Gastrofon</div>
+      <div class="slide-tag"><span class="pill">Gastrofon Web App</span></div>
+    </div>
+
+    <div class="webapp-head">
+      <div class="eyebrow reveal" style="--i:0">Call Details</div>
+      <h2 class="webapp-h2 reveal" style="--i:1">Summary, Recording and Transcript. <strong>On Demand.</strong></h2>
+      <p class="webapp-sub reveal" style="--i:2">Every conversation fully traceable: AI summary, playable original recording and complete word-for-word transcript.</p>
+    </div>
+
+    <figure class="browser-frame reveal" style="--i:3">
+      <div class="browser-shot">
+        <img src="../assets/webapp/anrufdetail.png" alt="Gastrofon Call Detail - Summary, recording and full transcript">
+      </div>
+    </figure>
+
+    <div class="webapp-cap reveal" style="--i:6">
+      <span>AI Summary</span><span class="sep">·</span><span>Original Recording</span><span class="sep">·</span><span>Full Transcript</span>
+    </div>
+
+    <div class="slide-footer">
+      <span>ninepointfive.ai · Gastrofon · Web App</span>
+      <span class="page-counter">11 / 12</span>
+    </div>
+  </section>
+
   <!-- ╔══════ Slide 9 · Verabschiedung ══════╗ -->
   <section class="slide outro" data-short>
     <div class="outro-bg" aria-hidden="true"></div>
@@ -2614,7 +2785,7 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
 
     <div class="slide-footer">
       <span>ninepointfive.ai</span>
-      <span class="page-counter">09 / 09</span>
+      <span class="page-counter">12 / 12</span>
     </div>
   </section>
 
@@ -2674,8 +2845,9 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
 
   // ───── Variant + Bonus from query string ─────
   const qs = new URLSearchParams(location.search);
-  if (qs.get('variant') === 'short') document.body.dataset.variant = 'short';
-  if (qs.get('bonus') === 'off')      document.body.dataset.bonus = 'off';
+  if (qs.get('variant') === 'short')    document.body.dataset.variant = 'short';
+  if (qs.get('variant') === 'extended') document.body.dataset.variant = 'extended';
+  if (qs.get('bonus') === 'off')        document.body.dataset.bonus = 'off';
 
   // ───── Demo number + QR substitution ─────
   // Usage: ?number=%2B4912345678901  → replaces all data-demo-number elements
