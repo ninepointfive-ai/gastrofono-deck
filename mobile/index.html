@@ -373,6 +373,14 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.02em; }
   /* Clean black frame around the slide on mobile */
   html, body { background: #000 !important; }
   .stage { background: #000; }
+  /* Landscape-Gate: bei Hochformat auf kleinen Devices das Gate zeigen.
+     Dreht der User das Handy quer → Media-Query matched nicht mehr →
+     #mobile-gate fällt zurück auf seine baseline display:none. */
+}
+@media (orientation: portrait) and (max-width: 1024px) {
+  #mobile-gate { display: flex !important; }
+}
+@media (max-width: 768px), (pointer: coarse) {
   /* Inactive slides: skip rendering without changing computed display.
      The nav JS filters out display:none at init time — so we must NOT
      use display:none, or only the first slide would be navigable.
@@ -2768,14 +2776,8 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
       <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/>
     </svg>
   </div>
-  <h2>Für Desktop optimiert</h2>
-  <p>Diese Präsentation ist für größere Bildschirme ausgelegt. Öffne sie auf deinem Computer für die beste Erfahrung.</p>
-  <a class="mg-btn mg-btn-primary" href="gastrofon_deck.pdf" download="Gastrofon_Produktvorstellung.pdf">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M12 2v13"/><path d="m8 11 4 4 4-4"/><rect x="2" y="17" width="20" height="5" rx="1"/>
-    </svg>
-    PDF herunterladen
-  </a>
+  <h2>Bitte Handy quer halten</h2>
+  <p>Diese Präsentation ist im Querformat optimiert. Dreh dein Gerät einmal — die Slides erscheinen dann automatisch.</p>
   <div id="mg-logo">
     <span style="font-weight:700">Gastro</span><span style="color:#6abf5e;font-weight:700">fon</span>
     <span>· ninepointfive AI</span>
