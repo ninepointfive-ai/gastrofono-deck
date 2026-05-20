@@ -373,11 +373,17 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.02em; }
   /* Clean black frame around the slide on mobile */
   html, body { background: #000 !important; }
   .stage { background: #000; }
-  /* Render only the active slide. Pinch-zoom would otherwise force the
-     browser to rasterize all 12 stacked slides at the new zoom level,
-     causing OOM tab kills. Trade-off: fade-transition is replaced by a
-     hard cut on mobile — acceptable price for zoom-stability. */
-  .slide:not(.is-active) { display: none !important; }
+  /* Inactive slides: skip rendering without changing computed display.
+     The nav JS filters out display:none at init time — so we must NOT
+     use display:none, or only the first slide would be navigable.
+     content-visibility:hidden + contain:strict give the browser enough
+     info to skip rasterizing these subtrees during pinch-zoom while
+     keeping computed display intact for the JS filter. */
+  .slide:not(.is-active) {
+    content-visibility: hidden;
+    contain: strict;
+    pointer-events: none !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
