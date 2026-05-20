@@ -28,7 +28,7 @@
 html, body {
   width: 100%; height: 100%;
   font-family: var(--font);
-  background: #141C0B;
+  background: #060d04;
   color: #fff;
   -webkit-font-smoothing: antialiased;
 }
@@ -41,6 +41,41 @@ body {
   min-height: 100vh;
   padding: 48px 24px;
   overflow: auto;
+  position: relative;
+  isolation: isolate;
+}
+
+/* ── Hintergrundfoto ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: -4%;
+  z-index: -2;
+  background-image: url('https://images.unsplash.com/photo-1592417817038-d13fd7342605?fm=jpg&q=85&w=2400&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center 40%;
+  animation: ken-burns 32s cubic-bezier(.45,.05,.55,.95) infinite;
+  will-change: transform;
+}
+
+@keyframes ken-burns {
+  0%         { transform: scale(1.04) translate(0,    0);      }
+  33%        { transform: scale(1.08) translate(-1%,  0.6%);   }
+  66%        { transform: scale(1.06) translate( 0.8%, -0.8%); }
+  100%       { transform: scale(1.04) translate(0,    0);      }
+}
+
+/* ── Dunkler Overlay wie Outro-Slide ── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg,
+    rgba(5,12,3,.62) 0%,
+    rgba(5,12,3,.50) 45%,
+    rgba(5,12,3,.68) 100%);
+  pointer-events: none;
 }
 
 
