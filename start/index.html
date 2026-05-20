@@ -39,69 +39,91 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding: 40px 24px;
+  padding: 48px 24px;
   overflow: auto;
 }
 
-/* ── Subtle radial tint ── */
+/* Subtle brand tint in the background */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background: radial-gradient(ellipse 70% 50% at 50% 40%, rgba(123,163,14,.06) 0%, transparent 70%);
+  background: radial-gradient(ellipse 70% 50% at 50% 38%, rgba(123,163,14,.07) 0%, transparent 68%);
   pointer-events: none;
 }
 
-/* ── Logo ── */
+/* ─────────────────────────────
+   Logo — identisch zur Präsentation, skaliert
+───────────────────────────── */
 .logo {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 14px;
+  gap: 18px;
   margin-bottom: 10px;
 }
 
 .logo-icon {
-  width: 50px; height: 50px;
-  background: linear-gradient(135deg, var(--brand-dark), var(--brand-light));
-  border-radius: 14px;
+  width: 64px;
+  height: 64px;
+  background: var(--brand);
+  border-radius: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 16px rgba(78,105,8,.22);
   flex-shrink: 0;
+  animation: logo-glow 3s ease-in-out infinite;
+}
+
+@keyframes logo-glow {
+  0%, 100% { box-shadow: 0 0 10px rgba(155,202,26,.22), 0 4px 16px rgba(123,163,14,.20); }
+  50%       { box-shadow: 0 0 20px rgba(155,202,26,.38), 0 4px 22px rgba(123,163,14,.32); }
 }
 
 .logo-icon svg {
-  width: 26px; height: 26px;
+  width: 34px;
+  height: 34px;
   color: #fff;
 }
 
 .logo-text {
-  font-size: 30px;
+  font-size: 40px;
   font-weight: 700;
-  letter-spacing: -.5px;
+  letter-spacing: -0.02em;
   line-height: 1;
 }
 
+/* Light-mode adaptation: "Gastro" in dark ink (not white like in presentation) */
 .logo-text .gastro { color: var(--ink); }
-.logo-text .fon    { color: var(--brand); }
-
-/* ── Tagline ── */
-.tagline {
-  font-size: 12.5px;
-  font-weight: 500;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--mute);
-  margin-bottom: 48px;
+.logo-text .fon {
+  color: var(--brand);
+  animation: logo-text-glow-green 3s ease-in-out infinite;
 }
 
-/* ── Cards ── */
+@keyframes logo-text-glow-green {
+  0%, 100% { text-shadow: 0 0 8px rgba(155,202,26,.18); }
+  50%       { text-shadow: 0 0 14px rgba(155,202,26,.35); }
+}
+
+/* ─────────────────────────────
+   Tagline
+───────────────────────────── */
+.tagline {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin-bottom: 52px;
+}
+
+/* ─────────────────────────────
+   Language Cards
+───────────────────────────── */
 .cards {
   display: flex;
   gap: 20px;
   width: 100%;
-  max-width: 540px;
+  max-width: 520px;
 }
 
 .card {
@@ -109,76 +131,88 @@ body::before {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
-  padding: 36px 28px 30px;
+  gap: 16px;
+  padding: 36px 28px 32px;
   background: var(--paper);
   border: 1.5px solid var(--hair);
-  border-radius: 20px;
+  border-radius: 22px;
   cursor: pointer;
   text-decoration: none;
   color: inherit;
-  box-shadow: 0 2px 8px rgba(26,26,46,.05), 0 8px 24px rgba(26,26,46,.04);
-  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  box-shadow: 0 1px 3px rgba(26,26,46,.04), 0 6px 20px rgba(26,26,46,.05);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
   position: relative;
   overflow: hidden;
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(123,163,14,.40);
-  box-shadow: 0 8px 24px rgba(26,26,46,.09), 0 20px 48px rgba(26,26,46,.07), 0 0 0 1px rgba(123,163,14,.18);
+  transform: translateY(-5px);
+  border-color: rgba(123,163,14,.45);
+  box-shadow: 0 4px 12px rgba(26,26,46,.07), 0 16px 40px rgba(26,26,46,.09), 0 0 0 1px rgba(123,163,14,.20);
 }
 
 .card:active { transform: translateY(-2px); }
 
-/* Highlighted card (auto-detected language) */
+/* Highlighted card (auto-detected browser language) */
 .card.is-hint {
-  border-color: rgba(123,163,14,.45);
-  box-shadow: 0 2px 8px rgba(26,26,46,.05), 0 8px 24px rgba(26,26,46,.04), 0 0 0 1px rgba(123,163,14,.20);
+  border-color: rgba(123,163,14,.40);
+  box-shadow: 0 1px 3px rgba(26,26,46,.04), 0 6px 20px rgba(26,26,46,.05), 0 0 0 1px rgba(123,163,14,.18);
 }
 
 .card.is-hint:hover {
   border-color: rgba(123,163,14,.65);
-  box-shadow: 0 8px 24px rgba(26,26,46,.09), 0 20px 48px rgba(26,26,46,.07), 0 0 0 1px rgba(123,163,14,.35);
+  box-shadow: 0 4px 12px rgba(26,26,46,.07), 0 16px 40px rgba(26,26,46,.09), 0 0 0 1px rgba(123,163,14,.35);
 }
 
-/* ── Recommended badge ── */
+/* ─────────────────────────────
+   Recommended badge
+───────────────────────────── */
 .hint-badge {
   position: absolute;
   top: 14px; right: 14px;
   font-size: 10px;
   font-weight: 600;
-  letter-spacing: .08em;
+  letter-spacing: .07em;
   text-transform: uppercase;
   color: var(--brand-dark);
-  background: rgba(123,163,14,.12);
-  border: 1px solid rgba(123,163,14,.28);
-  border-radius: 6px;
-  padding: 3px 8px;
+  background: rgba(123,163,14,.11);
+  border: 1px solid rgba(123,163,14,.26);
+  border-radius: 7px;
+  padding: 3px 9px;
   opacity: 0;
   transition: opacity .3s ease;
 }
 
 .card.is-hint .hint-badge { opacity: 1; }
 
-/* ── Flag SVG wrapper ── */
+/* ─────────────────────────────
+   Flag SVGs
+───────────────────────────── */
 .card-flag {
-  width: 64px;
-  height: 43px;
+  width: 72px;
+  /* height follows SVG viewBox aspect ratio (5:3) → ~43px */
   border-radius: 6px;
   overflow: hidden;
-  box-shadow: 0 1px 4px rgba(26,26,46,.15), 0 0 0 1px rgba(26,26,46,.08);
   flex-shrink: 0;
+  box-shadow:
+    0 0 0 1px rgba(26,26,46,.10),
+    0 2px 8px rgba(26,26,46,.12);
 }
 
-.card-flag svg { display: block; width: 100%; height: 100%; }
+.card-flag svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
 
-/* ── Card text ── */
+/* ─────────────────────────────
+   Card text
+───────────────────────────── */
 .card-lang {
-  font-size: 19px;
+  font-size: 20px;
   font-weight: 700;
   color: var(--ink);
-  letter-spacing: -.2px;
+  letter-spacing: -.25px;
 }
 
 .card-label {
@@ -186,14 +220,14 @@ body::before {
   font-weight: 400;
   color: var(--mute);
   text-align: center;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 .card-cta {
-  margin-top: 6px;
-  font-size: 12px;
+  margin-top: 4px;
+  font-size: 11.5px;
   font-weight: 600;
-  letter-spacing: .06em;
+  letter-spacing: .07em;
   text-transform: uppercase;
   color: var(--brand);
   display: flex;
@@ -202,32 +236,39 @@ body::before {
 }
 
 .card-cta svg {
-  width: 13px; height: 13px;
+  width: 12px; height: 12px;
   transition: transform .15s ease;
 }
 
 .card:hover .card-cta svg { transform: translateX(3px); }
 
-/* ── Footer ── */
+/* ─────────────────────────────
+   Footer
+───────────────────────────── */
 .footer {
-  margin-top: 44px;
+  margin-top: 48px;
   font-size: 12px;
   color: var(--mute);
+  opacity: .55;
   letter-spacing: .04em;
-  opacity: .6;
 }
 
-/* ── Mobile ── */
+/* ─────────────────────────────
+   Mobile
+───────────────────────────── */
 @media (max-width: 480px) {
   .cards { flex-direction: column; max-width: 300px; }
-  .tagline { margin-bottom: 32px; }
-  .card { padding: 28px 24px 24px; gap: 12px; }
-  .logo-text { font-size: 26px; }
+  .tagline { margin-bottom: 36px; }
+  .card { padding: 28px 22px 24px; gap: 13px; }
+  .logo-text { font-size: 34px; }
+  .logo-icon { width: 54px; height: 54px; border-radius: 15px; }
+  .logo-icon svg { width: 28px; height: 28px; }
 }
 </style>
 </head>
 <body>
 
+<!-- Logo — identisch zur Präsentation -->
 <div class="logo">
   <div class="logo-icon">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -246,15 +287,15 @@ body::before {
 
 <div class="cards">
 
-  <!-- DE -->
+  <!-- ── Deutsch ── -->
   <a class="card" id="card-de" href="#" onclick="navigate('de'); return false;">
     <span class="hint-badge">Empfohlen</span>
 
+    <!-- Deutschland-Flagge: schwarz / rot / gold, viewBox 5×3 -->
     <div class="card-flag">
-      <!-- Germany: black / red / gold -->
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3">
         <rect width="5" height="1" y="0" fill="#000000"/>
-        <rect width="5" height="1" y="1" fill="#CC0000"/>
+        <rect width="5" height="1" y="1" fill="#DD0000"/>
         <rect width="5" height="1" y="2" fill="#FFCE00"/>
       </svg>
     </div>
@@ -263,32 +304,38 @@ body::before {
     <span class="card-label">Präsentation auf Deutsch</span>
     <span class="card-cta">
       Öffnen
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M3 8h10M9 4l4 4-4 4"/>
       </svg>
     </span>
   </a>
 
-  <!-- EN -->
+  <!-- ── English ── -->
   <a class="card" id="card-en" href="#" onclick="navigate('en'); return false;">
     <span class="hint-badge">Recommended</span>
 
+    <!-- Union Jack, viewBox 5×3 (same ratio as DE flag for consistent display) -->
     <div class="card-flag">
-      <!-- United Kingdom: Union Jack -->
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 36">
-        <rect width="60" height="36" fill="#012169"/>
-        <!-- White saltire (St Andrew) -->
-        <line x1="0" y1="0" x2="60" y2="36" stroke="#fff" stroke-width="8"/>
-        <line x1="60" y1="0" x2="0" y2="36" stroke="#fff" stroke-width="8"/>
-        <!-- Red saltire (St Patrick, counterchanged) — simplified -->
-        <line x1="0" y1="0" x2="60" y2="36" stroke="#C8102E" stroke-width="4.5"/>
-        <line x1="60" y1="0" x2="0" y2="36" stroke="#C8102E" stroke-width="4.5"/>
-        <!-- White cross (St George) -->
-        <rect x="0" y="13.5" width="60" height="9" fill="#fff"/>
-        <rect x="25.5" y="0" width="9" height="36" fill="#fff"/>
-        <!-- Red cross (St George) -->
-        <rect x="0" y="15.5" width="60" height="5" fill="#C8102E"/>
-        <rect x="27.5" y="0" width="5" height="36" fill="#C8102E"/>
+        <defs>
+          <clipPath id="uk-clip"><rect width="60" height="36" rx="0"/></clipPath>
+        </defs>
+        <g clip-path="url(#uk-clip)">
+          <!-- Blue field -->
+          <rect width="60" height="36" fill="#012169"/>
+          <!-- St Andrew's white saltire -->
+          <line x1="0" y1="0" x2="60" y2="36" stroke="#fff" stroke-width="12"/>
+          <line x1="60" y1="0" x2="0" y2="36" stroke="#fff" stroke-width="12"/>
+          <!-- St Patrick's red saltire (simplified) -->
+          <line x1="0" y1="0" x2="60" y2="36" stroke="#C8102E" stroke-width="7"/>
+          <line x1="60" y1="0" x2="0" y2="36" stroke="#C8102E" stroke-width="7"/>
+          <!-- St George's white cross -->
+          <rect x="0" y="13.5" width="60" height="9" fill="#fff"/>
+          <rect x="25.5" y="0" width="9" height="36" fill="#fff"/>
+          <!-- St George's red cross -->
+          <rect x="0" y="15.5" width="60" height="5" fill="#C8102E"/>
+          <rect x="27.5" y="0" width="5" height="36" fill="#C8102E"/>
+        </g>
       </svg>
     </div>
 
@@ -296,7 +343,7 @@ body::before {
     <span class="card-label">Presentation in English</span>
     <span class="card-cta">
       Open
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M3 8h10M9 4l4 4-4 4"/>
       </svg>
     </span>
@@ -311,7 +358,6 @@ body::before {
     || (window.innerWidth < 768 && 'ontouchstart' in window);
 
   const preferEN = (navigator.language || 'de').toLowerCase().startsWith('en');
-
   document.getElementById(preferEN ? 'card-en' : 'card-de').classList.add('is-hint');
 
   function navigate(choice) {
