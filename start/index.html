@@ -87,9 +87,8 @@ body::before {
   line-height: 1;
 }
 
-/* Light-mode adaptation: "Gastro" in dark ink (not white like in presentation) */
-.logo-text .gastro { color: var(--ink); }
-.logo-text .fon { color: var(--brand); }
+.logo-text .gastro { color: var(--ink-soft); }
+.logo-text .fon    { color: var(--brand-light); }
 
 /* ─────────────────────────────
    Tagline
@@ -300,8 +299,6 @@ body::before {
   const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
     || (window.innerWidth < 768 && 'ontouchstart' in window);
 
-  const preferEN = (navigator.language || 'de').toLowerCase().startsWith('en');
-  document.getElementById(preferEN ? 'card-en' : 'card-de').classList.add('is-hint');
 
   function navigate(choice) {
     window.location.href = choice === 'de'
