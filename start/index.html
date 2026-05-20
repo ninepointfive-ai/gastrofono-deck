@@ -71,12 +71,7 @@ body::before {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  animation: logo-glow 3s ease-in-out infinite;
-}
-
-@keyframes logo-glow {
-  0%, 100% { box-shadow: 0 0 10px rgba(155,202,26,.22), 0 4px 16px rgba(123,163,14,.20); }
-  50%       { box-shadow: 0 0 20px rgba(155,202,26,.38), 0 4px 22px rgba(123,163,14,.32); }
+  box-shadow: 0 4px 16px rgba(123,163,14,.28);
 }
 
 .logo-icon svg {
@@ -94,15 +89,7 @@ body::before {
 
 /* Light-mode adaptation: "Gastro" in dark ink (not white like in presentation) */
 .logo-text .gastro { color: var(--ink); }
-.logo-text .fon {
-  color: var(--brand);
-  animation: logo-text-glow-green 3s ease-in-out infinite;
-}
-
-@keyframes logo-text-glow-green {
-  0%, 100% { text-shadow: 0 0 8px rgba(155,202,26,.18); }
-  50%       { text-shadow: 0 0 14px rgba(155,202,26,.35); }
-}
+.logo-text .fon { color: var(--brand); }
 
 /* ─────────────────────────────
    Tagline
@@ -186,23 +173,11 @@ body::before {
 .card.is-hint .hint-badge { opacity: 1; }
 
 /* ─────────────────────────────
-   Flag SVGs
+   Flag Emojis
 ───────────────────────────── */
 .card-flag {
-  width: 72px;
-  /* height follows SVG viewBox aspect ratio (5:3) → ~43px */
-  border-radius: 6px;
-  overflow: hidden;
-  flex-shrink: 0;
-  box-shadow:
-    0 0 0 1px rgba(26,26,46,.10),
-    0 2px 8px rgba(26,26,46,.12);
-}
-
-.card-flag svg {
-  display: block;
-  width: 100%;
-  height: auto;
+  font-size: 44px;
+  line-height: 1;
 }
 
 /* ─────────────────────────────
@@ -291,14 +266,7 @@ body::before {
   <a class="card" id="card-de" href="#" onclick="navigate('de'); return false;">
     <span class="hint-badge">Empfohlen</span>
 
-    <!-- Deutschland-Flagge: schwarz / rot / gold, viewBox 5×3 -->
-    <div class="card-flag">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3">
-        <rect width="5" height="1" y="0" fill="#000000"/>
-        <rect width="5" height="1" y="1" fill="#DD0000"/>
-        <rect width="5" height="1" y="2" fill="#FFCE00"/>
-      </svg>
-    </div>
+    <div class="card-flag">🇩🇪</div>
 
     <span class="card-lang">Deutsch</span>
     <span class="card-label">Präsentation auf Deutsch</span>
@@ -314,30 +282,7 @@ body::before {
   <a class="card" id="card-en" href="#" onclick="navigate('en'); return false;">
     <span class="hint-badge">Recommended</span>
 
-    <!-- Union Jack, viewBox 5×3 (same ratio as DE flag for consistent display) -->
-    <div class="card-flag">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 36">
-        <defs>
-          <clipPath id="uk-clip"><rect width="60" height="36" rx="0"/></clipPath>
-        </defs>
-        <g clip-path="url(#uk-clip)">
-          <!-- Blue field -->
-          <rect width="60" height="36" fill="#012169"/>
-          <!-- St Andrew's white saltire -->
-          <line x1="0" y1="0" x2="60" y2="36" stroke="#fff" stroke-width="12"/>
-          <line x1="60" y1="0" x2="0" y2="36" stroke="#fff" stroke-width="12"/>
-          <!-- St Patrick's red saltire (simplified) -->
-          <line x1="0" y1="0" x2="60" y2="36" stroke="#C8102E" stroke-width="7"/>
-          <line x1="60" y1="0" x2="0" y2="36" stroke="#C8102E" stroke-width="7"/>
-          <!-- St George's white cross -->
-          <rect x="0" y="13.5" width="60" height="9" fill="#fff"/>
-          <rect x="25.5" y="0" width="9" height="36" fill="#fff"/>
-          <!-- St George's red cross -->
-          <rect x="0" y="15.5" width="60" height="5" fill="#C8102E"/>
-          <rect x="27.5" y="0" width="5" height="36" fill="#C8102E"/>
-        </g>
-      </svg>
-    </div>
+    <div class="card-flag">🇬🇧</div>
 
     <span class="card-lang">English</span>
     <span class="card-label">Presentation in English</span>
