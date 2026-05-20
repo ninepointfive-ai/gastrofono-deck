@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>Gastrofon · Produktvorstellung — ninepointfive AI</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%238EB216'/%3E%3Cg stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' fill='none' transform='translate(4,4)'%3E%3Cpath d='M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2'/%3E%3Cpath d='M7 2v20'/%3E%3Cpath d='M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7'/%3E%3C/g%3E%3C/svg%3E">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="theme-color" content="#6C5CE7">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2800,9 +2800,19 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
     stage.style.transform = `translate(-50%, -50%) scale(${s})`;
   }
   fitStage();
-  window.addEventListener('resize', fitStage);
-  document.addEventListener('fullscreenchange', fitStage);
-  document.addEventListener('webkitfullscreenchange', fitStage);
+  // rAF-throttle: bei iOS Pinch-Zoom feuert 'resize' bis zu 60Hz; ohne
+  // Throttle ergibt das einen GPU-Storm der den Tab killt.
+  let fitPending = false;
+  function fitStageThrottled() {
+    if (fitPending) return;
+    fitPending = true;
+    requestAnimationFrame(() => { fitPending = false; fitStage(); });
+  }
+  window.addEventListener('resize', fitStageThrottled);
+  document.addEventListener('fullscreenchange', fitStageThrottled);
+  document.addEventListener('webkitfullscreenchange', fitStageThrottled);
+  // Touch-Devices: extra Schutz gegen Pinch-Gesture
+  document.addEventListener('gesturestart', e => e.preventDefault());
 
   // ───── Aktuelles Datum ─────
   const d = new Date();
