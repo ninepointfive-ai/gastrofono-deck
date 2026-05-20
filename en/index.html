@@ -2049,6 +2049,14 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
 @media (max-width: 768px) and (orientation: portrait) {
   #rotate-blocker { display: flex; }
 }
+
+/* ── Touch devices: disable Ken Burns animation ── */
+@media (hover: none) and (pointer: coarse) {
+  .cover-bg, .outro-bg {
+    animation: none;
+    will-change: auto;
+  }
+}
 </style>
 </head>
 <body>

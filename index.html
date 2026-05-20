@@ -2004,6 +2004,14 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   }
   .help-overlay { display: none !important; }
 }
+
+/* ── Touch-Geräte: Ken-Burns-Animation deaktivieren ── */
+@media (hover: none) and (pointer: coarse) {
+  .cover-bg, .outro-bg {
+    animation: none;
+    will-change: auto;
+  }
+}
 </style>
 </head>
 <body>
