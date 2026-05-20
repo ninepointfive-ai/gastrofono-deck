@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Gastrofon · Sprache wählen / Choose Language</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%238EB216'/%3E%3Cg stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' fill='none' transform='translate(4,4)'%3E%3Cpath d='M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2'/%3E%3Cpath d='M7 2v20'/%3E%3Cpath d='M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7'/%3E%3C/g%3E%3C/svg%3E">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&display=swap">
+<style>
+:root {
+  --brand:       #7BA30E;
+  --brand-light: #9BCA1A;
+  --brand-dark:  #4E6908;
+  --ink:         #1A1A2E;
+  --ink-soft:    #444455;
+  --mute:        #7A7A88;
+  --hair:        rgba(255,255,255,.08);
+  --font: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  width: 100%; height: 100%;
+  font-family: var(--font);
+  background: var(--ink);
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 32px 24px;
+  overflow: auto;
+}
+
+/* ── Subtle radial glow behind content ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(123,163,14,.10) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ── Logo ── */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.logo-icon {
+  width: 48px; height: 48px;
+  background: linear-gradient(135deg, var(--brand-dark), var(--brand-light));
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 24px rgba(155,202,26,.25);
+  flex-shrink: 0;
+}
+
+.logo-icon svg {
+  width: 26px; height: 26px;
+  color: #fff;
+}
+
+.logo-text {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -.5px;
+  line-height: 1;
+}
+
+.logo-text .gastro { color: #fff; }
+.logo-text .fon    { color: var(--brand-light); }
+
+/* ── Tagline ── */
+.tagline {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin-bottom: 52px;
+}
+
+/* ── Cards ── */
+.cards {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  max-width: 560px;
+}
+
+.card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 36px 28px 32px;
+  background: rgba(255,255,255,.04);
+  border: 1.5px solid var(--hair);
+  border-radius: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  background: rgba(255,255,255,.07);
+  border-color: rgba(155,202,26,.35);
+  box-shadow: 0 12px 40px rgba(0,0,0,.35), 0 0 0 1px rgba(155,202,26,.20);
+}
+
+.card:active {
+  transform: translateY(-1px);
+}
+
+/* Highlighted card (auto-detected language) */
+.card.is-hint {
+  border-color: rgba(123,163,14,.50);
+  background: rgba(123,163,14,.07);
+  box-shadow: 0 0 0 1px rgba(123,163,14,.25), 0 8px 32px rgba(0,0,0,.25);
+}
+
+.card.is-hint:hover {
+  border-color: rgba(155,202,26,.70);
+  box-shadow: 0 12px 40px rgba(0,0,0,.35), 0 0 0 1px rgba(155,202,26,.40);
+}
+
+.hint-badge {
+  position: absolute;
+  top: 14px; right: 14px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--brand-light);
+  background: rgba(155,202,26,.15);
+  border: 1px solid rgba(155,202,26,.30);
+  border-radius: 6px;
+  padding: 3px 8px;
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+
+.card.is-hint .hint-badge { opacity: 1; }
+
+.card-flag {
+  font-size: 42px;
+  line-height: 1;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.3));
+}
+
+.card-lang {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -.2px;
+}
+
+.card-label {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--mute);
+  text-align: center;
+  line-height: 1.5;
+}
+
+.card-cta {
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--brand-light);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.card-cta svg {
+  width: 13px; height: 13px;
+  transition: transform .15s ease;
+}
+
+.card:hover .card-cta svg { transform: translateX(3px); }
+
+/* ── Footer ── */
+.footer {
+  margin-top: 44px;
+  font-size: 12px;
+  color: rgba(255,255,255,.20);
+  letter-spacing: .04em;
+}
+
+/* ── Mobile ── */
+@media (max-width: 480px) {
+  .cards {
+    flex-direction: column;
+    max-width: 320px;
+  }
+
+  .tagline { margin-bottom: 36px; }
+
+  .card { padding: 28px 24px 24px; }
+
+  .logo-text { font-size: 26px; }
+}
+</style>
+</head>
+<body>
+
+<div class="logo">
+  <div class="logo-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m16 2-2.3 2.3a3 3 0 0 0 0 4.2l1.8 1.8a3 3 0 0 0 4.2 0L22 8"/>
+      <path d="M15 15 3.3 3.3a4.2 4.2 0 0 0 0 6l7.3 7.3c.7.7 2 .7 2.8 0L15 15Zm0 0 7 7"/>
+      <path d="m2.1 21.8 6.4-6.3"/>
+      <path d="m19 5-7 7"/>
+    </svg>
+  </div>
+  <div class="logo-text">
+    <span class="gastro">Gastro</span><span class="fon">fon</span>
+  </div>
+</div>
+
+<p class="tagline">Produktvorstellung &middot; Product Presentation</p>
+
+<div class="cards">
+  <a class="card" id="card-de" href="#" onclick="navigate('de'); return false;">
+    <span class="hint-badge">Empfohlen</span>
+    <span class="card-flag">🇩🇪</span>
+    <span class="card-lang">Deutsch</span>
+    <span class="card-label">Präsentation auf Deutsch</span>
+    <span class="card-cta">
+      Öffnen
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 8h10M9 4l4 4-4 4"/>
+      </svg>
+    </span>
+  </a>
+
+  <a class="card" id="card-en" href="#" onclick="navigate('en'); return false;">
+    <span class="hint-badge">Recommended</span>
+    <span class="card-flag">🇬🇧</span>
+    <span class="card-lang">English</span>
+    <span class="card-label">Presentation in English</span>
+    <span class="card-cta">
+      Open
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 8h10M9 4l4 4-4 4"/>
+      </svg>
+    </span>
+  </a>
+</div>
+
+<p class="footer">ninepointfive AI &mdash; gastrofon.de</p>
+
+<script>
+  const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+    || (window.innerWidth < 768 && 'ontouchstart' in window);
+
+  const lang = (navigator.language || 'de').toLowerCase();
+  const preferEN = lang.startsWith('en');
+
+  if (preferEN) {
+    document.getElementById('card-en').classList.add('is-hint');
+  } else {
+    document.getElementById('card-de').classList.add('is-hint');
+  }
+
+  function navigate(choice) {
+    if (choice === 'de') {
+      window.location.href = isMobile ? '../mobile/' : '../';
+    } else {
+      window.location.href = isMobile ? '../en-mobile/' : '../en/';
+    }
+  }
+</script>
+
+</body>
+</html>
