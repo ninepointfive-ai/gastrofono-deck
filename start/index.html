@@ -160,7 +160,14 @@ body::after {
   margin-bottom: 52px;
   text-align: center;
   line-height: 1.55;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0 .55em;
 }
+.tagline-part { white-space: nowrap; }
+.tagline-sep { opacity: .55; }
 
 /* ─────────────────────────────
    Language Cards
@@ -275,7 +282,8 @@ body::after {
 ───────────────────────────── */
 @media (max-width: 480px) {
   .cards { flex-direction: column; max-width: 300px; }
-  .tagline { margin-bottom: 36px; letter-spacing: .10em; }
+  .tagline { margin-bottom: 36px; letter-spacing: .10em; flex-direction: column; gap: 3px; }
+  .tagline-sep { display: none; }
   .card { padding: 28px 22px 24px; gap: 13px; }
   .logo { gap: 16px; }
   .logo-text { font-size: 38px; }
@@ -299,7 +307,8 @@ body::after {
   .logo-icon { width: 48px; height: 48px; border-radius: 13px; }
   .logo-icon svg { width: 24px; height: 24px; }
   .logo-text { font-size: 30px; }
-  .tagline { font-size: 10.5px; margin-bottom: 18px; letter-spacing: .10em; }
+  .tagline { font-size: 10.5px; margin-bottom: 18px; letter-spacing: .10em; flex-direction: column; gap: 2px; }
+  .tagline-sep { display: none; }
   .cards { flex-direction: row; max-width: 520px; gap: 14px; }
   .card { padding: 14px 18px 12px; gap: 8px; border-radius: 16px; }
   .card-flag { width: 44px; }
@@ -327,7 +336,11 @@ body::after {
   </div>
 </div>
 
-<p class="tagline">Produktvorstellung &middot; Product Presentation</p>
+<p class="tagline">
+  <span class="tagline-part">Produktvorstellung</span>
+  <span class="tagline-sep" aria-hidden="true">·</span>
+  <span class="tagline-part">Product Presentation</span>
+</p>
 
 <div class="cards">
 
