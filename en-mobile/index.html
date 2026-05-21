@@ -2005,11 +2005,23 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   color: #9BCA1A;
   overflow: visible;
   transform-origin: center center;
-  animation: rotate-phone 2.4s cubic-bezier(.55,.08,.45,1) infinite alternate;
+  animation: rotate-phone 3.2s cubic-bezier(.55,.08,.45,1) infinite;
 }
 @keyframes rotate-phone {
-  0%, 18%   { transform: rotate(0deg);  }
-  82%, 100% { transform: rotate(90deg); }
+  0%,   16%  { transform: rotate(0deg);  }
+  42%,  58%  { transform: rotate(90deg); }
+  84%, 100%  { transform: rotate(0deg);  }
+}
+/* Arrows show the rotation direction. They are visible during the
+   forward tilt and the landscape rest; they fade out during the
+   reverse rotation so they aren't misread as the opposite cue. */
+#rotate-blocker .rotate-icon .rotate-arrows {
+  animation: rotate-arrows-fade 3.2s ease-in-out infinite;
+}
+@keyframes rotate-arrows-fade {
+  0%,   58%  { opacity: 1; }
+  74%,  92%  { opacity: 0; }
+  100%       { opacity: 1; }
 }
 #rotate-blocker .rotate-title {
   font-family: 'Work Sans', sans-serif;
