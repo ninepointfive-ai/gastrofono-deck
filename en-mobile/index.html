@@ -367,13 +367,7 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.02em; }
   #mobile-gate { display: flex !important; }
 }
 @media (max-width: 768px), (pointer: coarse) {
-  .cover-bg,
-  .cover-glint,
-  .cover-overlay,
-  .outro-bg {
-    animation: none !important;
-    background-image: none !important;
-  }
+  .cover-glint { animation: none !important; }
   /* Clean black frame around the slide on mobile */
   html, body { background: #000 !important; }
   .stage { background: #000; }
@@ -2082,6 +2076,28 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
 }
 @media (max-width: 768px) and (orientation: portrait) {
   #rotate-blocker { display: flex; }
+}
+
+/* ── Mobile file: static background image directly on slide.
+   /en-mobile/ is loaded only from mobile devices (routing via /start/).
+   We bypass the .cover-bg/.outro-bg child element entirely — it had
+   compositing glitches on iOS Safari with absolute + transform. ── */
+.cover-bg,
+.outro-bg { display: none !important; }
+
+.cover {
+  background-color: #060d04 !important;
+  background-image: url('../assets/cover-bg.jpg') !important;
+  background-size: cover !important;
+  background-position: 90% 85% !important;
+  background-repeat: no-repeat !important;
+}
+.outro {
+  background-color: #060d04 !important;
+  background-image: url('../assets/outro-bg.jpg') !important;
+  background-size: cover !important;
+  background-position: center 40% !important;
+  background-repeat: no-repeat !important;
 }
 </style>
 </head>
