@@ -1873,16 +1873,8 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   height: 84px;
   color: #9BCA1A;
   overflow: visible;
-}
-/* Nur der Phone-Body rotiert — die Pfeile sind die Anleitung
-   und bleiben aussen herum stehen. */
-#rotate-blocker .rotate-icon .rotate-phone {
-  transform-box: fill-box;
   transform-origin: center center;
   animation: rotate-phone 2.4s cubic-bezier(.55,.08,.45,1) infinite alternate;
-}
-#rotate-blocker .rotate-icon .rotate-arrows {
-  opacity: .55;
 }
 @keyframes rotate-phone {
   0%, 18%   { transform: rotate(0deg);  }
