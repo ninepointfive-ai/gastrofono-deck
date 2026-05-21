@@ -1881,15 +1881,17 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   42%,  58%  { transform: rotate(90deg); }
   84%, 100%  { transform: rotate(0deg);  }
 }
-/* Pfeile zeigen die Drehrichtung und sind nur waehrend des Vorwaerts-
-   Kippens und der Landscape-Ruhepause sichtbar — beim Zurueckdrehen
-   verblassen sie, damit sie nicht als Gegenrichtung missverstanden werden. */
+/* Pfeile sind nur die Anleitung "drehe nach rechts" und verschwinden
+   waehrend der Vorwaerts-Drehung graduell. Sobald die Rueckdrehung
+   beginnt, sind sie schon vollstaendig weg — kein Gegenrichtungs-
+   Missverstaendnis. Im letzten Stueck des Cycles blenden sie sanft
+   wieder ein, damit der naechste Vorwaerts-Kipp wieder erklaert wird. */
 #rotate-blocker .rotate-icon .rotate-arrows {
   animation: rotate-arrows-fade 3.2s ease-in-out infinite;
 }
 @keyframes rotate-arrows-fade {
-  0%,   58%  { opacity: 1; }
-  74%,  92%  { opacity: 0; }
+  0%,   16%  { opacity: 1; }
+  42%,  84%  { opacity: 0; }
   100%       { opacity: 1; }
 }
 #rotate-blocker .rotate-title {
