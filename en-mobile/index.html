@@ -373,9 +373,6 @@ h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -0.02em; }
 .slide:not(.is-active) *::after {
   animation-play-state: paused !important;
 }
-@media (orientation: portrait) and (max-width: 1024px) {
-  #mobile-gate { display: flex !important; }
-}
 @media (max-width: 768px), (pointer: coarse) {
   .cover-glint { animation: none !important; }
   /* Clean black frame around the slide on mobile */
@@ -1862,63 +1859,6 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
 
 /* Print / PDF: each slide on its own page */
 /* ───────── Mobile: Blockade ───────── */
-#mobile-gate {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(180deg, #060d04 0%, #0d180a 100%);
-  z-index: 999999;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  text-align: center;
-  padding: 40px 32px;
-  gap: 0;
-}
-#mg-icon {
-  width: 64px; height: 64px;
-  background: rgba(153,199,24,.12);
-  border: 1px solid rgba(153,199,24,.25);
-  border-radius: 20px;
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 28px;
-}
-#mg-icon svg { width: 30px; height: 30px; color: #8EB216; }
-#mobile-gate h2 {
-  font-size: 22px; font-weight: 700;
-  margin: 0 0 10px; letter-spacing: -.02em;
-}
-#mobile-gate p {
-  font-size: 15px; color: rgba(255,255,255,.5);
-  margin: 0 0 36px; line-height: 1.5; max-width: 300px;
-}
-.mg-btn {
-  display: flex; align-items: center; justify-content: center; gap: 10px;
-  width: 100%; max-width: 300px; padding: 15px 24px;
-  border-radius: 12px; font-size: 15px; font-weight: 600;
-  cursor: pointer; text-decoration: none; border: none;
-  transition: opacity .15s; -webkit-tap-highlight-color: transparent;
-}
-.mg-btn:active { opacity: .75; }
-.mg-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
-.mg-btn-primary {
-  background: #8EB216; color: #060d04; margin-bottom: 12px;
-}
-.mg-btn-secondary {
-  background: rgba(17,27,10,.05);
-  border: 1px solid rgba(17,27,10,.12);
-  color: #111b0a;
-}
-#mg-logo {
-  position: absolute; bottom: 32px;
-  display: flex; align-items: center; gap: 8px;
-  font-size: 14px; opacity: .3;
-}
-
-/* Mobile Gate wird per JS nach Passwort-Auth angezeigt */
-
-
 /* ── Tablet navigation buttons ── */
 #nav-prev, #nav-next {
   display: none;
@@ -2850,22 +2790,6 @@ body[data-bonus="off"] .slide[data-bonus] { display: none !important; }
   </section>
 
 </div><!-- /stage -->
-
-<!-- Mobile Gate -->
-<div id="mobile-gate">
-  <div id="mg-icon">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/>
-    </svg>
-  </div>
-  <h2>Please hold your phone in landscape</h2>
-  <p>This presentation is optimised for landscape. Rotate your device — the slides will appear automatically.</p>
-  <div id="mg-logo">
-    <span><span style="font-weight:700">Gastro</span><span style="color:#6abf5e;font-weight:700">fon</span></span>
-    <span>· ninepointfive AI</span>
-  </div>
-</div>
-
 
 <!-- Hotkey Help Overlay -->
 <div class="help-overlay" id="helpOverlay">
